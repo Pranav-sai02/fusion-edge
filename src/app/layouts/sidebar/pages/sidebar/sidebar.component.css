@@ -1,0 +1,123 @@
+.sidebar {
+  width: 250px; /* default expanded width */
+  /* height: 100vh; */
+  background-color: #003572;
+  color: white;
+  /* padding-top: 50px; */
+  /* padding-bottom: 50px; */
+  overflow-y: auto;
+  scrollbar-width: none; /* hide default scrollbar in Firefox */
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  transition: width 0.4s ease-in-out; /* smooth collapse/expand */
+}
+
+.sidebar.collapsed {
+  width: 80px; /* width when collapsed */
+}
+
+.sidebar.collapsed .logo {
+  padding-left: 12px; /* smaller left padding in collapsed mode */
+}
+
+.logo-text {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.fusion {
+  color: white;
+  margin-right: 5px;
+}
+
+/* .edge {
+  color: #00b4b6; /* accent brand color
+} */
+
+/* --- Menu Section --- */
+.sidebar_menu {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin-top: 10px;
+}
+
+.section-title {
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  padding: 10px 16px 4px;
+  transition: opacity 0.3s ease-in-out, padding 0.3s ease-in-out,
+    height 0.3s ease-in-out;
+}
+
+.sidebar.collapsed .section-title {
+  opacity: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* --- Menu Items --- */
+.menu-item {
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  height: 44px; /* consistent row height */
+  padding: 7px 27px;
+  font-size: 0.95rem;
+  color: white;
+  cursor: pointer;
+  transition: background 0.5s ease-in-out, border-radius 0.5s ease-in-out,
+    padding 0.5s ease-in-out;
+  border-radius: 8px;
+  margin: 2px 0;
+  text-decoration: none; /* remove underline */
+  gap: 15px;
+}
+
+.menu-item.active {
+  background-color: #05b9bc; /* highlight for active item */
+  border-radius: 40px;
+}
+
+/* --- Icon --- */
+.icon-img {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  transition: margin 0.3s ease-in-out, transform 0.2s;
+}
+
+.menu-item:hover .icon-img {
+  transform: scale(1.1);
+}
+
+/* --- Divider --- */
+.group-divider {
+  height: 1px;
+  background-color: white;
+  margin: 2px 0;
+  opacity: 0.4;
+  border: none;
+}
+
+/* --- Menu Text --- */
+.menu-item span {
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  line-height: 22px;
+  height: 22px; /* fixes layout shift in transition */
+  width: auto;
+  display: inline-block;
+  white-space: nowrap; /* prevent wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity 0.3s ease-in-out, width 0.3s ease-in-out;
+}
+
+.sidebar.collapsed .menu-item span {
+  opacity: 0; /* hide label when collapsed */
+  width: 0;
+  overflow: hidden;
+}

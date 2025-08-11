@@ -1,0 +1,65 @@
+<div class="sidebar-toggle">
+  <nav
+    class="sidebar"
+    [class.collapsed]="isCollapsed"
+    (mouseenter)="onMouseEnter()"
+    (mouseleave)="onMouseLeave()"
+    role="navigation"
+    aria-label="Main Sidebar"
+  >
+    <!-- Menu Section -->
+    <div class="sidebar_menu">
+      <!-- Top-level menu items (e.g., Home, Dashboard) -->
+      <ng-container
+        *ngFor="let item of topLevelMenuItems; trackBy: trackByMenuId"
+      >
+        <a
+          class="menu-item"
+          [routerLink]="['/' + item.MenuViewName.toLowerCase()]"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          tabindex="0"
+          role="link"
+        >
+          <img
+            class="icon-img"
+            [src]="'assets/icons/' + (item.Icon || 'default.png')"
+            [alt]="item.DisplayName + ' Icon'"
+          />
+          <span class="label">{{ item.DisplayName }}</span>
+        </a>
+      </ng-container>
+
+      <!-- Grouped menu items, ordered using sectionOrder -->
+      <ng-container *ngFor="let section of sectionOrder">
+        <ng-container *ngIf="groupedMenu[section]">
+          <hr class="group-divider" />
+
+          <!-- Section title -->
+          <div class="section-title">{{ section }}</div>
+
+          <!-- Menu items under the section -->
+          <ng-container
+            *ngFor="let item of groupedMenu[section]; trackBy: trackByMenuId"
+          >
+            <a
+              class="menu-item"
+              [routerLink]="['/' + item.MenuViewName.toLowerCase()]"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              tabindex="0"
+              role="link"
+            >
+              <img
+                class="icon-img"
+                [src]="'assets/icons/' + (item.Icon || 'default.png')"
+                [alt]="item.DisplayName + ' Icon'"
+              />
+              <span class="label">{{ item.DisplayName }}</span>
+            </a>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </div>
+  </nav>
+</div>

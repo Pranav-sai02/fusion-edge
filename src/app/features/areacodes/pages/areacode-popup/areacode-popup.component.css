@@ -1,0 +1,146 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  position: relative;
+  background: #fff;
+  padding: 30px 25px 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 600px;
+  box-sizing: border-box;
+}
+
+.modal-title {
+  margin: 0 0 20px;
+  font-size: 22px;
+  color: #05b9bc;
+  font-weight: bold;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+}
+.close-btn:hover {
+  color: red;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 200px;
+}
+
+input[formControlName="description"] {
+  max-width: 900px;
+}
+
+input[formControlName="areaCode"] {
+  max-width: 400px;
+}
+
+select[formControlName="type"] {
+  max-width: 250px;
+}
+
+label {
+  font-weight: normal;
+  margin-bottom: 6px;
+  color: #444;
+  font-size: 14px;
+}
+
+.required {
+  color: red;
+  font-weight: bold;
+}
+
+input[type="text"],
+select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+input[type="text"]:focus,
+select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+  color: #444;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 30px;
+}
+.btn {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.cancel-btn {
+  background-color: #e74c3c;
+  color: #fff;
+}
+.submit-btn {
+  background-color: #05b9bc;
+  color: #fff;
+}
+.btn:hover {
+  opacity: 0.9;
+}
+
+.error-msg {
+  color: red;
+  font-size: 16px;
+  margin-top: 4px;
+}
+
+.required {
+  color: red;
+}

@@ -1,0 +1,22 @@
+<div class="ag-theme-alpine" style="width: 100%">
+  <ag-grid-angular
+    class="ag-grid-responsive"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    rowSelection="single"
+    [pagination]="true"
+    [paginationPageSize]="20"
+    [domLayout]="'autoHeight'"
+    [components]="{
+      activeToggleRenderer: ActiveToggleRendererComponent,
+      softDeleteRenderer: SoftDeleteRendererComponent,
+      saveButtonRenderer: SaveButtonRendererComponent
+    }"
+    [animateRows]="true"
+    [getContextMenuItems]="getContextMenuItems"
+    (gridReady)="onGridReady($event)"
+    (cellValueChanged)="onCellValueChanged($event)"
+  >
+  </ag-grid-angular>
+</div>

@@ -1,0 +1,187 @@
+/* Tabs */
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #ccc;
+  padding: 10px 0;
+  gap: 20px;
+  background: #fff;
+}
+.tab {
+  color: #5c6bc0;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.tab.active {
+  border-bottom: 2px solid #5c6bc0;
+  font-weight: bold;
+}
+label {
+  margin-top: 10px;
+  margin-left: 5px;
+  font-size: 14px;
+  color: #444;
+}
+
+/* Container */
+.complaints-container {
+  padding-top: 20px;
+}
+
+/* Action buttons & form */
+.actions {
+  background-color: var(--tab-bg-color );
+  padding: 20px;
+  box-shadow: 0 0 5px white;
+  border-radius: 5px;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.form-group select {
+  height: 38px;
+}
+
+/* Buttons */
+.btn {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn.primary {
+  background-color: #05b9bc;
+  color: white;
+  margin-top: 10px;
+}
+
+.table-wrapper {
+  background: #e8e8e8;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px white;
+}
+
+.table-header {
+  text-align: right;
+  margin-bottom: 10px;
+  margin-top: 25px;
+}
+
+.print-btn {
+  color: #05b9bc;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 22px;
+  margin-right: -10px;
+  background-color: white;
+}
+
+.tooltip-container1 {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-tooltip1 {
+  visibility: hidden;
+  background-color: white;
+  border: 1px solid black;
+  font-weight: bold;
+  color: #05b9bc;
+  text-align: center;
+  padding: 2px 8px;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 1;
+  left: -250%;
+  white-space: nowrap;
+  opacity: 0;
+  font-size: 16px;
+}
+
+.tooltip-container1:hover .custom-tooltip1 {
+  visibility: visible;
+  opacity: 1;
+}
+
+.ag-grid-responsive {
+  width: 100%;
+}
+
+.ag-theme-alpine {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+::ng-deep .ng-select {
+  border-radius: 4px !important;
+}
+::ng-deep .ng-dropdown-panel {
+  margin-top: 3px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+}
+::ng-deep .ng-select .ng-select-container {
+border-radius: 10px !important;
+margin-top: 5px !important;
+}
+::ng-deep .ng-dropdown-panel .scroll-host{
+border-radius: 10px !important;
+/* overflow-y: scroll !important;
+scrollbar-width: none !important; */
+}
+::ng-deep .ng-select.ng-select-single .ng-select-container {
+    height: 40px;
+}
+
+::ng-deep .ng-select .ng-arrow-wrapper {
+    width: 40px;
+}
+
+
+/* Clear (X) button */
+::ng-deep .ng-select .ng-clear-wrapper {
+display: none;
+}
+
+
+/* Dropdown panel */
+::ng-deep .ng-dropdown-panel {
+ overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-top: 4px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Dropdown option */
+::ng-deep .ng-dropdown-panel .ng-option {
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: white;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+/* Optional: last option no bottom border */
+::ng-deep .ng-dropdown-panel .ng-option:last-child {
+  border-bottom: none;
+}
+
+ .half-width {
+  width: 30%;
+  min-width: 200px;
+ }
+
+

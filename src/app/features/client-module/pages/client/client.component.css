@@ -1,0 +1,85 @@
+.full-width-wrapper {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.ag-grid-responsive {
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+.temporary-row {
+  background-color: yellow !important; /* Light yellow */
+}
+
+.bold-header {
+  font-weight: bold;
+}
+
+.soft-delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.soft-delete-btn:hover .delete-icon {
+  transform: scale(1.1);
+}
+
+/* Print button styles */
+.btn.btn-secondary {
+  background-color: #05b9bc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  font-size: 1rem;
+  float: right;
+  margin-bottom: 10px;
+}
+
+.btn.btn-secondary:hover {
+  background-color: #048a91;
+}
+
+.btn.btn-secondary:enabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.btn .rounded-circle {
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .btn.btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}

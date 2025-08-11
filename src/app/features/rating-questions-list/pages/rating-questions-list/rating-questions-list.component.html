@@ -1,0 +1,30 @@
+<div class="ag-theme-alpine" style="width: 100%">
+  <ag-grid-angular
+    class="ag-grid-responsive"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    rowSelection="single"
+    [pagination]="true"
+    [paginationPageSize]="20"
+    [domLayout]="'autoHeight'"
+    [components]="{
+      activeToggleRenderer: ActiveToggleRendererComponent,
+      softDeleteRenderer: SoftDeleteRendererComponent,
+      viewButtonRenderer: ViewButtonRendererComponent
+    }"
+    [animateRows]="true"
+    (gridReady)="onGridReady($event)"
+  >
+  </ag-grid-angular>
+</div>
+
+
+<!-- Popup Component -->
+<app-rating-questions-list-popup
+  *ngIf="showPopup"
+  [initialData]="isEditMode ? selectedOption : null"
+  [isEditMode]="isEditMode"
+  (close)="handlePopupClose()"
+  (submit)="handleDataSaved()"
+></app-rating-questions-list-popup>

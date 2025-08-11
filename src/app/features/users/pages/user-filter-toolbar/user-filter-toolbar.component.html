@@ -1,0 +1,24 @@
+<div
+  class="toolbar-container d-flex flex-wrap gap-2 align-items-center p-2 shadow-sm bg-white rounded"
+>
+  <div class="ms-auto d-flex gap-2">
+    <div class="export-wrapper">
+      <button class="export-btn"><i class="fas fa-download"></i> Export</button>
+    </div>
+
+    <button
+      class="btn btn-secondary d-flex align-items-center gap-2"
+      (click)="openPopup()"
+    >
+      <span
+        class="bg-white text-secondary rounded-circle d-flex justify-content-center align-items-center"
+        style="width: 24px; height: 24px"
+      >
+        <i class="fas fa-plus"></i>
+      </span>
+      <span>New</span>
+    </button>
+
+    <app-userpopup *ngIf="showPopup" (close)="closePopup()"></app-userpopup>
+  </div>
+</div>

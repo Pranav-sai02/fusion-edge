@@ -1,0 +1,372 @@
+.form-container {
+  background: #e7f9f9;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+.form-row {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full-width {
+  flex: 2;
+}
+
+label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #444;
+}
+.required {
+  color: red;
+}
+
+input[type="text"],
+input[type="email"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.save-btn {
+  background-color: #05b9bc;
+  color: white;
+  font-weight: bold;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: var(--popup-bg-color);
+  border-radius: var(--popup-border-radius);
+  padding: 30px;
+  width: 90%;
+  max-width: 800px;
+  position: relative;
+
+  display: flex;
+  flex-direction: column; /* Ensure vertical layout */
+  gap: 10px; /* Reduce gap between children */
+}
+
+.close-btn {
+  width: 150px;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  color: #888;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  right: -32px;
+}
+
+.close-btn:hover {
+  color: red;
+}
+
+.success-popup {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #e0e0e0;
+  color: #2a7a2a;
+  padding: 12px 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  z-index: 1001;
+}
+
+.success-popup .close-success {
+  background: transparent;
+  border: none;
+  margin-left: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.error-messages small {
+  color: red;
+  font-size: 13px;
+}
+
+.profile-image-wrapper {
+  position: relative;
+  width: 130px;
+  height: 130px;
+}
+
+/* profile section */
+
+.profile-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
+
+.camera-overlay {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  cursor: pointer;
+  color: white;
+}
+
+.camera-overlay i {
+  font-size: 14px;
+}
+
+.image-options {
+  position: absolute;
+  top: 140px;
+  left: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 200px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.image-options div {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.image-options div:last-child {
+  border-bottom: none;
+}
+
+.image-options div:hover {
+  background-color: #f2f2f2;
+}
+
+.image-options .disabled {
+  color: #aaa;
+  pointer-events: none;
+}
+
+.close-popup-btn {
+  position: absolute;
+  top: -10px;
+  right: -60px;
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  cursor: pointer;
+  color: #888;
+}
+
+.close-popup-btn:hover {
+  color: #333;
+}
+
+/* clear-cross */
+
+.input-container {
+  position: relative;
+}
+
+.clear-icon {
+  position: absolute;
+  right: 10px;
+  top: 36px; /* adjust depending on input height */
+  cursor: pointer;
+  color: #aaa;
+  font-size: 16px;
+}
+
+.clear-icon:hover {
+  color: #333;
+}
+
+.modal-title {
+  font-size: var(--popup-header-font-size);
+  font-weight: bold;
+  text-align: left;
+  color: var(--popup-header-text-color);
+}
+
+input::placeholder {
+  color: #b0b0b0; /* Light gray */
+  opacity: 1; /* Make sure it's fully visible */
+}
+
+.is-active-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-top: 15px;
+  flex: 1;
+  flex-direction: row !important; /* ensure horizontal */
+}
+
+.toggle-label {
+  font-size: 14px;
+  color: #444;
+  white-space: nowrap;
+  margin: 0;
+}
+
+/* Remove form-group stacking override for this case */
+.form-group.is-active-group {
+  flex-direction: row !important;
+}
+
+/* Toggle switch styles */
+.toggle-wrapper {
+  display: none;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 36px;
+  height: 20px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #888;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  top: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.toggle-switch input:checked + .slider {
+  background-color: #05b9bc;
+}
+
+.toggle-switch input:checked + .slider::before {
+  transform: translateX(16px);
+}
+
+.btnss {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.cls-btn {
+  background-color: #e74c3c;
+  color: white;
+  font-weight: bold;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+::ng-deep ngx-intl-tel-input {
+  width: 100%;
+  display: block;
+}
+
+::ng-deep .iti {
+  width: 100%;
+  display: flex;
+}
+
+::ng-deep .iti__tel-input {
+  width: 100% !important;
+  height: 43px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+::ng-deep .iti__selected-flag {
+  height: 43px;
+  padding: 0 10px;
+  border-right: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+::ng-deep .iti__country-list {
+  max-height: 150px;
+  overflow-y: auto;
+  border-radius: 0 0 10px 10px;
+  width: 350px;
+}
+
+::ng-deep .iti--allow-dropdown input:focus {
+  border-color: black;
+  outline: none;
+}
+
+::ng-deep .dropdown-menu.show {
+  width: 350px;
+}

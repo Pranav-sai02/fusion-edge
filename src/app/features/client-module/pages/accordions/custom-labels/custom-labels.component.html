@@ -1,0 +1,101 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Custom Labels</mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <form class="section-form">
+      <!-- Toggle for Validate -->
+      <div class="form-group is-active-group">
+        <label class="toggle-label">Validate</label>
+        <label class="toggle-switch">
+          <input
+            type="checkbox"
+            [(ngModel)]="validate"
+            (ngModelChange)="updateCustomLabels()"
+            name="validate"
+          />
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <!-- Policy Label -->
+      <div class="grid-3">
+        <label>
+          Policy Label
+          <input
+            type="text"
+            [(ngModel)]="policyLabel"
+            (ngModelChange)="updateCustomLabels()"
+            placeholder="Policy Label"
+            name="policyLabel"
+          />
+        </label>
+      </div>
+
+      <!-- Validation Labels -->
+      <div class="grid-3">
+        <label>
+          Validation Label 1
+          <input
+            type="text"
+            [(ngModel)]="validationLabels.label1"
+            (ngModelChange)="updateCustomLabels()"
+            placeholder="Validation Label 1"
+            name="label1"
+          />
+        </label>
+        <label>
+          Validation Label 2
+          <input
+            type="text"
+            [(ngModel)]="validationLabels.label2"
+            (ngModelChange)="updateCustomLabels()"
+            placeholder="Validation Label 2"
+            name="label2"
+          />
+        </label>
+        <label>
+          Validation Label 3
+          <input
+            type="text"
+            [(ngModel)]="validationLabels.label3"
+            (ngModelChange)="updateCustomLabels()"
+            placeholder="Validation Label 3"
+            name="label3"
+          />
+        </label>
+        <label>
+          Validation Label 4
+          <input
+            type="text"
+            [(ngModel)]="validationLabels.label4"
+            (ngModelChange)="updateCustomLabels()"
+            placeholder="Validation Label 4"
+            name="label4"
+          />
+        </label>
+        <label>
+          Validation Label 5
+          <input
+            type="text"
+            [(ngModel)]="validationLabels.label5"
+            (ngModelChange)="updateCustomLabels()"
+            placeholder="Validation Label 5"
+            name="label5"
+          />
+        </label>
+        <label>
+          Validation Label 6
+          <input
+            type="text"
+            [(ngModel)]="validationLabels.label6"
+            (ngModelChange)="updateCustomLabels()"
+            placeholder="Validation Label 6"
+            name="label6"
+          />
+        </label>
+      </div>
+    </form>
+  </mat-expansion-panel>
+</mat-accordion>

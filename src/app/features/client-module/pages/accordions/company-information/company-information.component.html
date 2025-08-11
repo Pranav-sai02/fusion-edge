@@ -1,0 +1,247 @@
+<div class="accordion-wrapper">
+  <mat-accordion>
+    <mat-expansion-panel class="full-bg-panel" [expanded]="false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Company Information</mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="success-popup" *ngIf="showSuccess">
+        <span>Client saved successfully</span>
+      </div>
+
+      <div class="accordion-scroll-container">
+        <!-- Removed (ngSubmit)="onSave()" since universal save is used -->
+        <form [formGroup]="clientForm">
+          <!-- Company Name -->
+          <div class="form-row">
+            <div class="form-group input-container full-width">
+              <label>Company Name <span class="required">*</span></label>
+              <input
+                type="text"
+                formControlName="CompanyName"
+                placeholder="Enter Company Name"
+                (input)="
+                  tabState.updateCompanyInfo({
+                    ClientName: clientForm.get('CompanyName')?.value
+                  })
+                "
+              />
+              <div
+                class="error-messages"
+                *ngIf="
+                  clientForm.get('CompanyName')?.touched &&
+                  clientForm.get('CompanyName')?.invalid
+                "
+              >
+                <small
+                  *ngIf="clientForm.get('CompanyName')?.errors?.['required']"
+                >
+                  Company Name is required
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Client Group -->
+          <div class="form-row">
+            <div class="form-group input-container full-width">
+              <label>Client Group <span class="required">*</span></label>
+              <ng-select
+                [items]="clientGroup"
+                bindLabel="Name"
+                bindValue="ClientGroupId"
+                formControlName="ClientGroupId"
+                [clearable]="true"
+                [searchable]="true"
+                [closeOnSelect]="true"
+                (change)="
+                  tabState.updateCompanyInfo({
+                    ClientGroupId: clientForm.get('ClientGroupId')?.value
+                  })
+                "
+              >
+                <ng-template ng-option-tmp let-item="item">
+                  <div class="option-box">{{ item.Name }}</div>
+                </ng-template>
+              </ng-select>
+              <div
+                class="error-messages"
+                *ngIf="
+                  clientForm.get('ClientGroupId')?.touched &&
+                  clientForm.get('ClientGroupId')?.invalid
+                "
+              >
+                <small
+                  *ngIf="clientForm.get('ClientGroupId')?.errors?.['required']"
+                >
+                  Client Group is required
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="form-row">
+            <div class="form-group input-container full-width">
+              <label>Address</label>
+              <textarea
+                formControlName="Address"
+                placeholder="Enter Address"
+                rows="3"
+                (input)="
+                  tabState.updateCompanyInfo({
+                    Address: clientForm.get('Address')?.value
+                  })
+                "
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Telephone -->
+          <div class="client-form-country">
+            <div class="form-row">
+              <div class="form-group input-container full-width">
+                <label>Telephone <span class="required">*</span></label>
+                <ngx-intl-tel-input
+                  [cssClass]="'custom'"
+                  [preferredCountries]="preferredCountries"
+                  [enablePlaceholder]="true"
+                  [searchCountryFlag]="true"
+                  [separateDialCode]="true"
+                  [searchCountryField]="searchFields"
+                  [selectedCountryISO]="CountryISO.SouthAfrica"
+                  [phoneValidation]="true"
+                  formControlName="Telephone"
+                  (ngModelChange)="
+                    tabState.updateCompanyInfo({
+                      Tel: clientForm.get('Telephone')?.value?.e164Number
+                    })
+                  "
+                ></ngx-intl-tel-input>
+                <div
+                  class="error-messages"
+                  *ngIf="
+                    clientForm.get('Telephone')?.touched &&
+                    clientForm.get('Telephone')?.invalid
+                  "
+                >
+                  <small
+                    *ngIf="clientForm.get('Telephone')?.errors?.['required']"
+                  >
+                    Telephone is required
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile -->
+            <div class="form-row">
+              <div class="form-group input-container">
+                <label>Mobile Number <span class="required">*</span></label>
+                <ngx-intl-tel-input
+                  [cssClass]="'custom'"
+                  [preferredCountries]="preferredCountries"
+                  [enablePlaceholder]="true"
+                  [searchCountryFlag]="true"
+                  [separateDialCode]="true"
+                  [searchCountryField]="searchFields"
+                  [selectedCountryISO]="CountryISO.SouthAfrica"
+                  [phoneValidation]="true"
+                  formControlName="Mobile"
+                  (ngModelChange)="
+                    tabState.updateCompanyInfo({
+                      Mobile: clientForm.get('Mobile')?.value?.e164Number
+                    })
+                  "
+                ></ngx-intl-tel-input>
+                <div
+                  class="error-messages"
+                  *ngIf="
+                    clientForm.get('Mobile')?.touched &&
+                    clientForm.get('Mobile')?.invalid
+                  "
+                >
+                  <small *ngIf="clientForm.get('Mobile')?.errors?.['required']">
+                    Mobile Number is required
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Fax -->
+            <div class="form-row">
+              <div class="form-group input-container">
+                <label>Fax</label>
+                <ngx-intl-tel-input
+                  [cssClass]="'custom'"
+                  [preferredCountries]="preferredCountries"
+                  [enablePlaceholder]="true"
+                  [searchCountryFlag]="true"
+                  [separateDialCode]="true"
+                  [searchCountryField]="searchFields"
+                  [selectedCountryISO]="CountryISO.SouthAfrica"
+                  [phoneValidation]="true"
+                  formControlName="Fax"
+                  (ngModelChange)="
+                    tabState.updateCompanyInfo({
+                      Fax: clientForm.get('Fax')?.value?.e164Number
+                    })
+                  "
+                ></ngx-intl-tel-input>
+              </div>
+            </div>
+          </div>
+
+          <!-- Web URL -->
+          <div class="form-row">
+            <div class="form-group input-container full-width">
+              <label>Web URL</label>
+              <input
+                type="text"
+                formControlName="WebURL"
+                placeholder="Enter Web URL"
+                (input)="
+                  tabState.updateCompanyInfo({
+                    WebURL: clientForm.get('WebURL')?.value
+                  })
+                "
+              />
+              <!-- <span
+                class="clear-icon"
+                *ngIf="clientForm.get('WebURL')?.value"
+                (click)="clearField('WebURL')"
+                >✕</span
+              > -->
+              <div
+                class="error-messages"
+                *ngIf="
+                  clientForm.get('WebURL')?.touched &&
+                  clientForm.get('WebURL')?.invalid
+                "
+              >
+                <small *ngIf="clientForm.get('WebURL')?.errors?.['pattern']">
+                  Enter a valid URL
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Company Logo -->
+          <div class="form-section">
+            <label>Company Logo</label>
+            <div class="file-input-row">
+              <input class="file-name" [value]="selectedFileName" readonly />
+              <label class="file-btn">
+                Select
+                <input type="file" (change)="onFileSelected($event)" />
+              </label>
+            </div>
+            <a class="file-link" href="{{ currentFileUrl }}" target="_blank">
+              Click here to view the current file
+            </a>
+          </div>
+        </form>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

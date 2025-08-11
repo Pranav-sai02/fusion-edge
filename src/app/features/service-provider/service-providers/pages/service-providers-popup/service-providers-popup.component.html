@@ -1,0 +1,716 @@
+<div class="overlay">
+  <div class="popup-container" [formGroup]="providerForm">
+    <!-- Header -->
+    <div class="popup-header">
+      <h2 class="popup-title">
+        <i
+          class="fas"
+          [ngClass]="isEditMode ? 'fas fa-edit' : 'fas fa-edit'"
+        ></i>
+        {{ isEditMode ? "Edit Service Provider" : "Create Service Provider" }}
+      </h2>
+      <button class="close-btn" type="button" (click)="onClose()">×</button>
+    </div>
+    <!-- Body -->
+    <div class="popup-body">
+      <!-- Basic Info Rows -->
+      <div class="form-row-set">
+        <div class="form-row">
+          <div class="form-row-label-input">
+            <label>Name:</label>
+            <input type="text" formControlName="name" />
+            <div class="error-msg">
+              <small
+                *ngIf="
+                  providerForm.get('name')?.touched &&
+                  providerForm.get('name')?.hasError('required')
+                "
+              >
+                Name is required.
+              </small>
+              <small  *ngIf="!(
+                  providerForm.get('name')?.touched &&
+                  providerForm.get('name')?.hasError('required'))
+                ">&nbsp;</small>
+            </div>
+          </div>
+          <div class="form-row-label-input">
+            <label>VAT Number:</label>
+            <input type="text" formControlName="vatNumber" />
+            <div class="error-msg">
+              <small
+                *ngIf="
+                  providerForm.get('vatNumber')?.touched &&
+                  providerForm.get('vatNumber')?.hasError('required')
+                "
+              >
+                VAT Number is required.
+              </small>
+               <small  *ngIf="!(
+                  providerForm.get('vatNumber')?.touched &&
+                  providerForm.get('vatNumber')?.hasError('required'))
+                ">&nbsp;</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-row-label-input">
+            <label>Company Reg. No.:</label>
+            <input type="text" formControlName="companyRegNo" />
+            <div class="error-msg">
+              <small
+                *ngIf="
+                  providerForm.get('companyRegNo')?.touched &&
+                  providerForm.get('companyRegNo')?.hasError('required')
+                "
+              >
+                Company Reg No is required.
+              </small>
+               <small  *ngIf="!(
+                  providerForm.get('companyRegNo')?.touched &&
+                  providerForm.get('companyRegNo')?.hasError('required'))
+                ">&nbsp;</small>
+            </div>
+          </div>
+          <div class="form-row-label-input">
+            <label>Branch:</label>
+            <input type="text" formControlName="branch" />
+            <div class="error-msg">
+              <small
+                *ngIf="
+                  providerForm.get('branch')?.touched &&
+                  providerForm.get('branch')?.hasError('required')
+                "
+              >
+                Branch is required.
+              </small>
+               <small  *ngIf="!(
+                  providerForm.get('branch')?.touched &&
+                  providerForm.get('branch')?.hasError('required'))
+                ">&nbsp;</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-row-label-input">
+            <label>Office Address:</label>
+            <textarea rows="3" formControlName="officeAddress"></textarea>
+            <div class="error-msg">
+              <small
+                *ngIf="
+                  providerForm.get('officeAddress')?.touched &&
+                  providerForm.get('officeAddress')?.hasError('required')
+                "
+              >
+                Office Address is required.
+              </small>
+               <small  *ngIf="!(
+                  providerForm.get('officeAddress')?.touched &&
+                  providerForm.get('officeAddress')?.hasError('required'))
+                ">&nbsp;</small>
+            </div>
+          </div>
+          <div class="form-row-label-input">
+            <label>Storage Address (if different):</label>
+            <textarea rows="3" formControlName="storageAddress"></textarea>
+            <div class="error-msg">
+              <small
+                *ngIf="
+                  providerForm.get('storageAddress')?.touched &&
+                  providerForm.get('storageAddress')?.hasError('required')
+                "
+              >
+                Storage Address is required.
+              </small>
+               <small  *ngIf="!(
+                  providerForm.get('storageAddress')?.touched &&
+                  providerForm.get('storageAddress')?.hasError('required'))
+                ">&nbsp;</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-row-label-input">
+            <label>Town / City:</label>
+            <input type="text" formControlName="townCity" />
+            <div class="error-msg">
+              <small
+                *ngIf="
+                  providerForm.get('townCity')?.touched &&
+                  providerForm.get('townCity')?.hasError('required')
+                "
+              >
+                Town is required.
+              </small>
+               <small  *ngIf="!(
+                  providerForm.get('townCity')?.touched &&
+                  providerForm.get('townCity')?.hasError('required'))
+                ">&nbsp;</small>
+            </div>
+          </div>
+          <div class="form-row-label-input">
+            <label>Province:</label>
+            <ng-select
+              [items]="provinces"
+              bindLabel="name"
+              bindValue="id"
+              formControlName="province"
+              [searchable]="true"
+              [clearable]="true"
+              [closeOnSelect]="true"
+              placeholder="Select Province"
+              class="custom-select-with-icon"
+            >
+            </ng-select>
+            <div class="error-msg">
+              <small
+                *ngIf="
+                  providerForm.get('province')?.touched &&
+                  providerForm.get('province')?.hasError('required')
+                "
+              >
+                Province is required.
+              </small>
+               <small  *ngIf="!(
+                  providerForm.get('province')?.touched &&
+                  providerForm.get('province')?.hasError('required'))
+                ">&nbsp;</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label class="contact-details-label">Contact Details:</label>
+        <div class="contact-details">
+          <div class="form-row-num full-width">
+            <div class="table-section" formArrayName="contactNumbers">
+              <div class="table-header">
+                <span class="span1">Telephone / Cell</span
+                ><span class="span2">Name</span
+                ><span class="span3">Comments</span>
+              </div>
+              <div
+                class="table-row"
+                *ngFor="let contact of contactNumbers.controls; let i = index"
+                [formGroupName]="i"
+              >
+                <ngx-intl-tel-input
+                  [cssClass]="'custom'"
+                  [preferredCountries]="[
+                    CountryISO.India,
+                    CountryISO.SouthAfrica
+                  ]"
+                  [enablePlaceholder]="true"
+                  [searchCountryFlag]="true"
+                  [separateDialCode]="true"
+                  [searchCountryField]="searchFields"
+                  [selectFirstCountry]="false"
+                  [selectedCountryISO]="CountryISO.SouthAfrica"
+                  [phoneValidation]="true"
+                  [maxLength]="10"
+                  name="number"
+                  formControlName="number"
+                ></ngx-intl-tel-input>
+                <!-- <div
+                  class="error-msg"
+                  *ngIf="
+                    contact.get('number')?.touched &&
+                    contact.get('number')?.invalid
+                  "
+                >
+                  <small
+                    *ngIf="contact.get('number')?.hasError('required')"
+                    >Contact Number is required.</small
+                  >
+                </div> -->
+
+                <input type="text" formControlName="name" />
+                <input type="text" formControlName="comment" />
+                <button
+                  type="button"
+                  class="add-btn"
+                  (click)="addContactRow()"
+                  *ngIf="i === 0"
+                >
+                  +
+                </button>
+                <button
+                  type="button"
+                  class="rem-btn"
+                  (click)="removeContactRow(i)"
+                  *ngIf="i > 0"
+                >
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fax Numbers -->
+          <div class="form-row-num full-width">
+            <div class="table-section" formArrayName="faxNumbers">
+              <div class="table-header">
+                <span class="spann1">Fax Number</span
+                ><span class="spann2">Name</span
+                ><span class="spann3">Comments</span>
+              </div>
+              <div
+                class="table-row"
+                *ngFor="let fax of faxNumbers.controls; let i = index"
+                [formGroupName]="i"
+              >
+                <!-- <input type="text" formControlName="fax" /> -->
+
+                <ngx-intl-tel-input
+                  [cssClass]="'custom'"
+                  [preferredCountries]="[
+                    CountryISO.India,
+                    CountryISO.SouthAfrica
+                  ]"
+                  [enablePlaceholder]="true"
+                  [searchCountryFlag]="true"
+                  [separateDialCode]="true"
+                  [searchCountryField]="searchFields"
+                  [selectFirstCountry]="false"
+                  [selectedCountryISO]="CountryISO.SouthAfrica"
+                  [maxLength]="10"
+                  [phoneValidation]="true"
+                  name="fax"
+                  formControlName="fax"
+                ></ngx-intl-tel-input>
+  <!-- <div class="error-msg">
+    <small *ngIf="fax.get('fax')?.touched && fax.get('fax')?.hasError('required')">Fax number is required.</small>
+
+                     <small  *ngIf="!(
+                  fax.get('fax')?.touched &&
+                  fax.get('fax')?.hasError('required'))
+                ">&nbsp;</small>
+
+  </div>  -->
+                <input type="text" formControlName="name" />
+                 <!-- <div class="error-msg">
+    <small *ngIf="fax.get('name')?.touched && fax.get('name')?.hasError('required')">Name is required.</small>
+  </div> -->
+                <input type="text" formControlName="comment" />
+
+                <button
+                  type="button"
+                  class="add-btn"
+                  (click)="addFaxRow()"
+                  *ngIf="i === 0"
+                >
+                  +
+                </button>
+                <button
+                  type="button"
+                  class="rem-btn"
+                  (click)="removeFaxRow(i)"
+                  *ngIf="i > 0"
+                >
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Email Addresses -->
+          <div class="form-row full-width">
+            <div class="table-sectionn" formArrayName="emailAddresses">
+              <div
+                class="table-row-email"
+                *ngFor="let email of emailAddresses.controls; let i = index"
+                [formGroupName]="i"
+              >
+                <div class="email-address">
+                  <label
+                    class="spann1"
+                    [ngStyle]="{ visibility: i === 0 ? 'visible' : 'hidden' }"
+                    >Email Addresses:</label
+                  >
+                  <input type="email" formControlName="email" />
+
+                  <label> <i class="fa-regular fa-envelope my-icon"></i></label>
+                    <div class="error-msg2">
+                    <small
+                      *ngIf="
+                        email.get('email')?.touched &&
+                        email.get('email')?.hasError('required')
+                      "
+                      >Email is required.</small
+                    >
+                     <small  *ngIf="!(
+                  email.get('email')?.touched &&
+                  email.get('email')?.hasError('required'))
+                ">&nbsp;</small>
+                  </div>
+                </div>
+                <div class="email-comment">
+                  <label
+                    [ngStyle]="{ visibility: i === 0 ? 'visible' : 'hidden' }"
+                    >Comments</label
+                  >
+                  <input
+                    type="text"
+                    formControlName="comment"
+                    class="form-email1"
+                  />
+                  <div class="error-msg2">
+                    <small
+                      *ngIf="
+                        email.get('comment')?.touched &&
+                        email.get('comment')?.hasError('required')
+                      "
+                      >Comment is required.</small
+                    >
+                     <small  *ngIf="!(
+                  email.get('comment')?.touched &&
+                  email.get('comment')?.hasError('required'))
+                ">&nbsp;</small>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  class="add-btn"
+                  (click)="addEmailRow()"
+                  *ngIf="i === 0"
+                >
+                  +
+                </button>
+                <button
+                  type="button"
+                  class="rem-btn"
+                  (click)="removeEmailRow(i)"
+                  *ngIf="i > 0"
+                >
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Service Info -->
+      <div class="form-row-service">
+        <div class="form-row-label-input">
+          <label for="serviceType">Service Type:</label>
+          <!-- <select formControlName="serviceType" required class="service-type">
+            <option value="0" disabled>Select Service Type</option>
+            <option
+              *ngFor="let type of serviceTypes"
+              [value]="type.ServiceProviderId"
+            >
+              {{ type.Description }}
+            </option>
+          </select> -->
+          <ng-select
+            [items]="serviceTypesList"
+            bindLabel="name"
+            formControlName="serviceType"
+            [searchable]="true"
+            [clearable]="true"
+            [closeOnSelect]="true"
+            [placeholder]="'Select Service Type'"
+            class="service-type custom-select-with-icon"
+          >
+            <ng-template let-item="item" ng-option-tmp>
+              <span [ngClass]="{ 'deleted-type': item.isDeleted }">
+                {{ item.name }}
+              </span>
+            </ng-template>
+          </ng-select>
+          <div class="error-msg">
+            <small
+              *ngIf="
+                providerForm.get('serviceType')?.touched &&
+                providerForm.get('serviceType')?.hasError('required')
+              "
+            >
+              Service Type is required.
+            </small>
+             <small  *ngIf="!(
+                  providerForm.get('serviceType')?.touched &&
+                  providerForm.get('serviceType')?.hasError('required'))
+                ">&nbsp;</small>
+          </div>
+        </div>
+        <div class="form-row-label-input1">
+          <label>Rate / KM:</label>
+          <input
+            type="number"
+            step="0.1"
+            min="0"
+            max="100"
+            formControlName="ratePerKm"
+            class="rate-per-km"
+          />
+          <div class="error-msg">
+            <small
+              *ngIf="
+                providerForm.get('ratePerKm')?.touched &&
+                providerForm.get('ratePerKm')?.hasError('required')
+              "
+            >
+              Rate is required.
+            </small>
+             <small  *ngIf="!(
+                  providerForm.get('ratePerKm')?.touched &&
+                  providerForm.get('ratePerKm')?.hasError('required'))
+                ">&nbsp;</small>
+          </div>
+        </div>
+
+        <div class="form-row-label-input-designation">
+          <label for="designationNo" class="form-label">Designation No:</label>
+          <input
+            type="text"
+            id="designationNo"
+            formControlName="designationNo"
+            class="designation-no"
+          />
+          <div class="error-msg1">
+            <small
+              *ngIf="
+                providerForm.get('designationNo')?.touched &&
+                providerForm.get('designationNo')?.hasError('required')
+              "
+            >
+              Designation No is required.
+            </small>
+             <small  *ngIf="!(
+                  providerForm.get('designationNo')?.touched &&
+                  providerForm.get('designationNo')?.hasError('required'))
+                ">&nbsp;</small>
+          </div>
+        </div>
+        <div class="edit-address">
+          <div class="form-group">
+            <label>Can Edit Address:</label>
+            <!-- <input type="checkbox" formControlName="canEditAddress" /> -->
+            <!-- <i class="fa-solid fa-toggle-on" formControlName="canEditAddress"></i> -->
+            <label class="toggle-switch">
+              <input type="checkbox" formControlName="canEditAddress" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-roww">
+        <div class="form-row-label-input">
+          <label>Date Authorised:</label>
+          <input
+            type="date"
+            formControlName="dateAuthorised"
+            class="date-authorised"
+          />
+          <div class="error-msg">
+            <small
+              *ngIf="
+                providerForm.get('dateAuthorised')?.touched &&
+                providerForm.get('dateAuthorised')?.hasError('required')
+              "
+            >
+              Date Authorised is required.
+            </small>
+             <small  *ngIf="!(
+                  providerForm.get('dateAuthorised')?.touched &&
+                  providerForm.get('dateAuthorised')?.hasError('required'))
+                ">&nbsp;</small>
+          </div>
+        </div>
+        <div class="form-row-label-input">
+          <label class="form-label1">Authorised By:</label>
+          <ng-select
+            [items]="authorisedByList"
+            bindLabel="name"
+            bindValue="id"
+            formControlName="authorisedBy"
+            [searchable]="true"
+            [clearable]="true"
+            [closeOnSelect]="true"
+            [placeholder]="'Select Authorised Person'"
+            class="custom-select-with-icon"
+          >
+          </ng-select>
+          <div class="error-msg">
+            <small
+              *ngIf="
+                providerForm.get('authorisedBy')?.touched &&
+                providerForm.get('authorisedBy')?.hasError('required')
+              "
+            >
+              Authorised By is required.
+            </small>
+             <small  *ngIf="!(
+                  providerForm.get('vatNumber')?.touched &&
+                  providerForm.get('vatNumber')?.hasError('required'))
+                ">&nbsp;</small>
+          </div>
+        </div>
+        <div class="form-row-label-input">
+          <label>Date Opened:</label>
+          <input type="date" formControlName="dateOpened" class="date-opened" />
+          <div class="error-msg">
+            <small
+              *ngIf="
+                providerForm.get('dateAuthorised')?.touched &&
+                providerForm.get('dateAuthorised')?.hasError('required')
+              "
+            >
+              Date Opened is required.
+            </small>
+             <small  *ngIf="!(
+                  providerForm.get('dateAuthorised')?.touched &&
+                  providerForm.get('dateAuthorised')?.hasError('required'))
+                ">&nbsp;</small>
+          </div>
+        </div>
+        <div class="form-row-label-input">
+          <label class="form-label1">Opened By:</label>
+          <ng-select
+            [items]="openedByList"
+            bindLabel="name"
+            bindValue="id"
+            formControlName="openedBy"
+            [searchable]="true"
+            [clearable]="true"
+            [closeOnSelect]="true"
+            [placeholder]="'Select Opened By'"
+            class="custom-select-with-icon"
+          >
+          </ng-select>
+          <div class="error-msg">
+            <small
+              *ngIf="
+                providerForm.get('openedBy')?.touched &&
+                providerForm.get('openedBy')?.hasError('required')
+              "
+            >
+              Opened By is required.
+            </small>
+             <small  *ngIf="!(
+                  providerForm.get('openedBy')?.touched &&
+                  providerForm.get('openedBy')?.hasError('required'))
+                ">&nbsp;</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flags and Statuses -->
+
+      <div class="form-roww1">
+        <div class="form-group">
+          <div class="form-group-toggle">
+            <label>Is Verified:</label>
+            <!-- <input type="checkbox" formControlName="isVerified" /> -->
+            <label class="toggle-switch">
+              <input
+                type="checkbox"
+                formControlName="isVerified"
+                (change)="onVerifiedToggle()"
+              />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+        <div class="form-row-label-date-verified">
+          <div class="form-row-label-input">
+            <label class="date-label">Date Verified:</label>
+            <input
+              type="date"
+              formControlName="dateVerified"
+              class="date-verified"
+              [disabled]="!isVerified"
+            />
+          </div>
+        </div>
+        <div class="form-row-label-date-verified-by">
+          <div class="form-row-label-input">
+            <label class="form-label2">Verified By:</label>
+            <ng-select
+              [items]="verifiedByList"
+              bindLabel="name"
+              bindValue="id"
+              formControlName="verifiedBy"
+              [disabled]="!isVerified"
+              [searchable]="true"
+              [clearable]="true"
+              [closeOnSelect]="true"
+              [placeholder]="'Select Verified By'"
+              class="verified-by custom-select-with-icon"
+            >
+            </ng-select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-roww1">
+        <div class="form-group">
+          <label>Is Accredited:</label>
+          <!-- <input type="checkbox" formControlName="isAccredited" /> -->
+          <label class="toggle-switch">
+            <input
+              type="checkbox"
+              formControlName="isAccredited"
+              (change)="onAccreditedToggle()"
+            />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="form-row-label-date-accredited">
+          <div class="form-row-label-input">
+            <label class="form-data-accredited">Date Accredited:</label>
+            <input
+              type="date"
+              formControlName="dateAccredited"
+              class="date-accredited"
+              [disabled]="!isAccredited"
+            />
+          </div>
+        </div>
+        <div class="form-row-label-date-accredited-by">
+          <div class="form-row-label-input">
+            <label class="form-label2">Accredited By:</label>
+            <ng-select
+              [items]="accreditedByList"
+              bindLabel="name"
+              bindValue="id"
+              formControlName="accreditedBy"
+              [disabled]="!isAccredited"
+              [searchable]="true"
+              [clearable]="true"
+              [closeOnSelect]="true"
+              [placeholder]="'Select Accredited By'"
+              class="accredited-by custom-select-with-icon"
+            >
+            </ng-select>
+          </div>
+        </div>
+      </div>
+      <div class="active">
+        <div class="form-row1">
+          <div class="form-group">
+            <label>Is Active:</label>
+            <!-- <input type="checkbox" formControlName="isActive" /> -->
+            <label class="toggle-switch">
+              <input type="checkbox" formControlName="isActive" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="popup-footer">
+      <button class="cancel-btn" type="button" (click)="onCancel()">
+        Cancel
+      </button>
+      <button class="save-btn" type="button" (click)="onSubmit()">Save</button>
+    </div>
+  </div>
+</div>

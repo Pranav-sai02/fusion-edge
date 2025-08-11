@@ -1,0 +1,33 @@
+<div class="documents-container">
+  <div class="header">
+    <button class="link-button" (click)="showPopup = true">
+      <i class="fas fa-link"></i> Link New Document
+    </button>
+  </div>
+
+  <app-link-documents-popup
+    *ngIf="showPopup"
+    (close)="showPopup = false"
+    (formSubmit)="onServiceLinked($event)">
+  </app-link-documents-popup>
+
+  <div class="ag-theme-alpine">
+    <ag-grid-angular
+      class="ag-theme-alpine grid-full"
+      [rowData]="rows"
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      [components]="{
+        unlinkCellRenderer: UnlinkCellRendererComponent,
+        fileLinkRenderer: FileLinkRendererComponent
+      }"
+      [pagination]="true"
+      [paginationPageSize]="20"
+      (gridReady)="onGridReady($event)"
+      (firstDataRendered)="onFitColumns()"
+      (gridSizeChanged)="onFitColumns()"
+      [domLayout]="'autoHeight'"
+    >
+    </ag-grid-angular>
+  </div>
+</div>

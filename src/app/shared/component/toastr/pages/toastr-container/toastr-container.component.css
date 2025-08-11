@@ -1,0 +1,26 @@
+.toaster-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 300px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none; /* allows clicks to pass through if needed */
+}
+
+.toaster-container app-toaster {
+  pointer-events: all; /* but keep the toasts clickable */
+}
+
+:host {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10001;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

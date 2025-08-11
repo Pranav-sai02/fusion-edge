@@ -1,0 +1,56 @@
+<div class="documents-container">
+  <div class="header">
+    <!-- <button class="link-button">
+      <i class="fas fa-link"></i>Link Rating Question
+    </button> -->
+
+    <form [formGroup]="form" class="dropdown-container">
+      <ng-select
+        [items]="ratingQuestionsList"
+        bindLabel="name"
+        bindValue="id"
+        formControlName="selectedRatingQuestion"
+        [searchable]="true"
+        [clearable]="true"
+        [closeOnSelect]="true"
+        placeholder="Link New Rating Questions"
+        class="dropdown-container"
+      >
+      </ng-select>
+
+      <button
+        class="btn btn-secondary d-flex align-items-center gap-1"
+        type="button"
+        (click)="onAddSelectedQuestion()"
+      >
+        <span
+          class="bg-white text-secondary rounded-circle d-flex justify-content-center align-items-center"
+          style="width: 24px; height: 24px"
+        >
+          <i class="fas fa-plus"></i>
+        </span>
+        <span>Add</span>
+      </button>
+    </form>
+  </div>
+
+  <div class="ag-theme-alpine" style="width: 100%">
+    <ag-grid-angular
+      class="ag-grid-responsive"
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      rowSelection="single"
+      [pagination]="true"
+      [paginationPageSize]="20"
+      [domLayout]="'autoHeight'"
+      [components]="{
+        activeToggleRenderer: ActiveToggleRendererComponent,
+        unlinkCellRenderer: UnlinkCellRendererComponent
+      }"
+      [animateRows]="true"
+      (gridReady)="onGridReady($event)"
+    >
+    </ag-grid-angular>
+  </div>
+</div>

@@ -1,0 +1,125 @@
+.upload-container {
+  padding-top: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.upload-box {
+  background-color: var(--tab-bg-color);
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px white;
+}
+
+@media (max-width: 600px) {
+  .upload-box {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .save-btn {
+    width: 100%;
+  }
+}
+
+.upload-left {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.upload-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.upload-left input[type="file"] {
+  padding: 10px 12px;
+  height: 44px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.save-btn {
+  color: #05b9bc;
+  border: none;
+  height: 44px;
+  padding: 0 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 14px;
+  background-color:var(--tab-bg-color);
+}
+
+.upload-box .fa-plus-circle {
+  font-size: 30px;
+}
+
+.table-header {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.print-btn {
+  color: #05b9bc;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 22px;
+  margin-right: -10px;
+  background-color: white;
+}
+
+.tooltip-container,
+.tooltip-container1 {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-tooltip,
+.custom-tooltip1 {
+  visibility: hidden;
+  background-color: white;
+  border: 1px solid black;
+  font-weight: bold;
+  color: #05b9bc;
+  text-align: center;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 1;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.custom-tooltip {
+  padding: 5px 8px;
+  top: -130%;
+  transform: translateX(-85%);
+}
+
+.custom-tooltip1 {
+  padding: 2px 8px;
+  left: -250%;
+  font-size: 16px;
+}
+
+.tooltip-container:hover .custom-tooltip,
+.tooltip-container1:hover .custom-tooltip1 {
+  visibility: visible;
+  opacity: 1;
+}

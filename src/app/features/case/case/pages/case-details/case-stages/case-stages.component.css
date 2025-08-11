@@ -1,0 +1,30 @@
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+@use "@angular/material" as mat;
+
+:root {
+  @include mat.stepper-overrides(
+    (
+      container-color: orange,
+      header-done-state-icon-background-color: red,
+    )
+  );
+}
+
+.mat-expansion-panel {
+  margin: 0 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #e0e0e0;
+  background-color: #fff;
+  margin-bottom: 12px;
+}
+
+.mat-expansion-panel-header {
+  padding: 0 16px;
+}
+
+.mat-expansion-panel:not([class*="mat-elevation-z"]) {
+  box-shadow: 0 0 5px #e0e0e0;
+}

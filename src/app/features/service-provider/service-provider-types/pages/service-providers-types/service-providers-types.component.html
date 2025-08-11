@@ -1,0 +1,23 @@
+<!-- service-providers-types.component.html -->
+<div class="ag-theme-alpine" style="height: 500px; width: 100%">
+  <ag-grid-angular
+    class="ag-grid-responsive"
+    [rowData]="rows"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    rowSelection="single"
+    [pagination]="true"
+    [paginationPageSize]="20"
+    [domLayout]="'autoHeight'"
+    [rowClassRules]="{}"
+    [components]="{
+      activeToggleRenderer: ActiveToggleRendererComponent,
+      softDeleteRenderer: SoftDeleteRendererComponent,
+      saveButtonRenderer: SaveButtonRendererComponent
+    }"
+    [getContextMenuItems]="getContextMenuItems"
+    (cellValueChanged)="onCellValueChanged($event)"
+    [animateRows]="true"
+  >
+  </ag-grid-angular>
+</div>

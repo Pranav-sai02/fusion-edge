@@ -1,0 +1,220 @@
+<div class="modal-backdrop">
+  <div class="modal-content">
+    <button class="close-btn" (click)="closeForm()">✖</button>
+    <h2 class="modal-title">
+      <i
+        class="fas"
+        [ngClass]="isEditMode ? 'fas fa-edit' : ' fas fa-edit'"
+      ></i>
+
+      {{ isEditMode ? "Edit User" : "Create New User" }}
+    </h2>
+
+    <!-- Success Popup -->
+    <div class="success-popup" *ngIf="showSuccess">
+      <span>User saved successfully</span>
+      <button class="close-success" (click)="showSuccess = false">✖</button>
+    </div>
+
+    <!-- Profile Picture Section -->
+    <div class="profile-picture-section">
+      <div class="profile-image-wrapper">
+        <img
+          [src]="ProfileImage || defaultImage"
+          width="130"
+          height="130"
+          alt="Profile Image"
+        />
+        <div class="camera-overlay" (click)="toggleOptions = !toggleOptions">
+          <i class="fa fa-camera"></i>
+        </div>
+        <div class="image-options" *ngIf="toggleOptions">
+          <button
+            class="close-popup-btn"
+            type="button"
+            (click)="toggleOptions = false"
+          >
+            ×
+          </button>
+          <div (click)="fileInput.click()">Choose from Gallery</div>
+          <div (click)="openCamera()">Take Photo</div>
+          <div (click)="removeImage()" [class.disabled]="!ProfileImage">
+            Remove Photo
+          </div>
+        </div>
+      </div>
+      <input
+        type="file"
+        (change)="onFileSelected($event)"
+        #fileInput
+        style="display: none"
+      />
+    </div>
+
+    <!-- User Form -->
+    <form [formGroup]="userForm" (ngSubmit)="onSave()">
+      <div class="form-row">
+        <div class="form-group input-container">
+          <label>First Name <span class="required">*</span></label>
+          <input
+            type="text"
+            formControlName="Firstname"
+            placeholder="Enter First Name"
+          />
+          <span
+            class="clear-icon"
+            *ngIf="userForm.get('Firstname')?.value"
+            (click)="clearField('Firstname')"
+            >&#10005;</span
+          >
+          <div
+            class="error-messages"
+            *ngIf="
+              userForm.get('Firstname')?.touched &&
+              userForm.get('Firstname')?.invalid
+            "
+          >
+            <small *ngIf="userForm.get('Firstname')?.errors?.['required']"
+              >First Name is required</small
+            >
+          </div>
+        </div>
+
+        <div class="form-group input-container">
+          <label>Last Name <span class="required">*</span></label>
+          <input
+            type="text"
+            formControlName="Lastname"
+            placeholder="Enter Last Name"
+          />
+          <span
+            class="clear-icon"
+            *ngIf="userForm.get('Lastname')?.value"
+            (click)="clearField('Lastname')"
+            >&#10005;</span
+          >
+          <div
+            class="error-messages"
+            *ngIf="
+              userForm.get('Lastname')?.touched &&
+              userForm.get('Lastname')?.invalid
+            "
+          >
+            <small *ngIf="userForm.get('Lastname')?.errors?.['required']"
+              >Last Name is required</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group input-container">
+          <label>Email <span class="required">*</span></label>
+          <input
+            type="email"
+            formControlName="UserEmail"
+            placeholder="Enter Email"
+          />
+          <div
+            class="error-messages"
+            *ngIf="
+              userForm.get('UserEmail')?.touched &&
+              userForm.get('UserEmail')?.invalid
+            "
+          >
+            <small *ngIf="userForm.get('UserEmail')?.errors?.['required']"
+              >Email is required</small
+            >
+            <small *ngIf="userForm.get('UserEmail')?.errors?.['email']"
+              >Enter a valid email address</small
+            >
+          </div>
+        </div>
+
+        <div class="form-group input-container">
+          <label>Employee ID</label>
+          <input
+            type="text"
+            formControlName="EmployeeId"
+            placeholder="Enter Employee ID"
+          />
+          <span
+            class="clear-icon"
+            *ngIf="userForm.get('EmployeeId')?.value"
+            (click)="clearField('EmployeeId')"
+            >&#10005;</span
+          >
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group input-container">
+          <label>Phone Number</label>
+          <ngx-intl-tel-input
+            [cssClass]="'custom'"
+            [preferredCountries]="[
+              CountryISO.UnitedStates,
+              CountryISO.UnitedKingdom
+            ]"
+            [enablePlaceholder]="true"
+            [searchCountryFlag]="true"
+            [separateDialCode]="true"
+            [searchCountryField]="searchFields"
+            [selectedCountryISO]="CountryISO.SouthAfrica"
+            [phoneValidation]="true"
+            name="PhoneNumber"
+            formControlName="PhoneNumber"
+          >
+          </ngx-intl-tel-input>
+        </div>
+
+        <div class="form-group input-container">
+          <label>Mobile Number <span class="required">*</span></label>
+          <ngx-intl-tel-input
+            [cssClass]="'custom'"
+            [preferredCountries]="[
+              CountryISO.UnitedStates,
+              CountryISO.UnitedKingdom
+            ]"
+            [enablePlaceholder]="true"
+            [searchCountryFlag]="true"
+            [separateDialCode]="true"
+            [searchCountryField]="searchFields"
+            [selectedCountryISO]="CountryISO.SouthAfrica"
+            [phoneValidation]="true"
+            name="MobileNumber"
+            formControlName="MobileNumber"
+          >
+          </ngx-intl-tel-input>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group is-active-group">
+          <label class="toggle-label">Is Active?</label>
+          <label class="toggle-switch">
+            <input type="checkbox" formControlName="IsActive" />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group is-active-group">
+          <label class="toggle-label">Is Admin?</label>
+          <label class="toggle-switch">
+            <input type="checkbox" formControlName="IsAdmin" />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="btnss">
+        <button type="button" class="cls-btn" (click)="closeForm()">
+          Cancel
+        </button>
+        <button type="submit" class="save-btn">Save</button>
+      </div>
+    </form>
+  </div>
+</div>

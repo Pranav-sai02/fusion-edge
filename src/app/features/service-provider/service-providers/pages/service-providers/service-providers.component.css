@@ -1,0 +1,52 @@
+/* Ensure the grid takes full width */
+.grid-wrapper {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.ag-grid-responsive {
+  width: 100% !important;
+}
+
+.ag-theme-alpine {
+  width: 100% !important;
+}
+
+/* Default cell styles */
+.ag-cell {
+  line-height: 1.5;
+  padding: 8px;
+}
+
+/* Header cell styling */
+.ag-header-cell {
+  background-color: #05b9bc !important;
+  color: white !important;
+}
+
+.bold-header {
+  font-weight: bold;
+}
+
+/* Center header labels */
+.ag-theme-alpine .ag-header-cell-label {
+  justify-content: center !important;
+  text-align: center !important;
+  white-space: normal !important;
+}
+
+/* Apply wrapping specifically to address column cells */
+.wrap-text {
+  white-space: normal !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+/* Allow row height to expand automatically based on content */
+.ag-theme-alpine .ag-row {
+  height: auto !important;
+}
+.deleted-type {
+  color: red;
+}

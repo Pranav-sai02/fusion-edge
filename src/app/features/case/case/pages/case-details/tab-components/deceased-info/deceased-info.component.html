@@ -1,0 +1,132 @@
+<div class="form-container">
+  <form [formGroup]="deathForm">
+    <div class="row">
+      <div class="policy">
+      <div class="form-field">
+        <label>Policy #</label>
+        <input type="text" formControlName="policyNumber" />
+      </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="form-field">
+        <label>Relationship to Policyholder</label>
+        <select formControlName="relationship">
+          <option>OTHER</option>
+          <option>SPOUSE</option>
+          <option>CHILD</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Initials <span class="required">Required</span></label>
+        <input type="text" formControlName="initials" />
+      </div>
+      <div class="form-field">
+        <label>First Name</label>
+        <input type="text" formControlName="firstName" />
+      </div>
+      <div class="form-field">
+        <label>Last Name</label>
+        <input type="text" formControlName="lastName" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-field">
+        <label>ID Number <span class="required">Required</span></label>
+        <input type="text" formControlName="idNumber" />
+      </div>
+      <div class="form-field">
+        <label>Passport Number</label>
+        <input type="text" formControlName="passportNumber" />
+      </div>
+      <div class="form-field gender-wrapper">
+        <label>Gender</label>
+        <div class="gender-options">
+          <label><input type="radio" formControlName="gender" value="Male" /> Male</label>
+          <label><input type="radio" formControlName="gender" value="Female" /> Female</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-field">
+        <label>Date of birth</label>
+        <input type="date" formControlName="dob" />
+      </div>
+      <div class="form-field">
+        <label>Date of death</label>
+        <input type="date" formControlName="dod" />
+      </div>
+      <div class="form-field">
+        <label>Age at death</label>
+        <input type="number" formControlName="age" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-field">
+        <label>Place of death</label>
+        <input type="text" formControlName="placeOfDeath" />
+      </div>
+      <div class="form-field">
+        <label>Place of death province <span class="required">Required</span></label>
+        <select formControlName="deathProvince">
+          <option>Gauteng</option>
+          <option>Free State</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-field">
+        <label>Body Location</label>
+        <input type="text" formControlName="bodyLocation" />
+      </div>
+      <div class="form-field">
+        <label>Body Location Province <span class="required">Required</span></label>
+        <select formControlName="bodyProvince">
+          <option>Gauteng</option>
+          <option>Free State</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-field">
+        <label>Location Type</label>
+        <select formControlName="locationType">
+          <option>Funeral Parlour</option>
+          <option>Home</option>
+          <option>Hospital</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Telephone Number</label>
+        <input type="tel" formControlName="telephone" />
+      </div>
+      <div class="form-field">
+        <label>Burial Town</label>
+        <input type="text" formControlName="burialTown" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-field">
+        <label>Province</label>
+        <select formControlName="province">
+          <option>Free State</option>
+          <option>Gauteng</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Country</label>
+        <select formControlName="country">
+          <option>South Africa</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>

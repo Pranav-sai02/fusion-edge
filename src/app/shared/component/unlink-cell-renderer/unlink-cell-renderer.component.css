@@ -1,0 +1,42 @@
+::ng-deep .p-tooltip {
+  border-radius: 4px;
+  box-shadow: none !important;
+  padding: 6px 10px !important;
+  font-weight: bold !important;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Custom tooltip style for unlink */
+::ng-deep .unlink-tooltip {
+  background-color: rgba(246, 242, 242, 0.7) !important;
+  border: 1px solid black !important;
+  border-radius: 4px;
+  padding: 6px 10px !important;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Tooltip text color */
+::ng-deep .unlink-tooltip .p-tooltip-text {
+  color: red !important;
+}
+
+/* Custom arrow for top-positioned tooltip */
+::ng-deep .unlink-tooltip.p-tooltip-top::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 7px solid rgba(246, 242, 242, 0.7);
+  border: black;
+}
+
+/* Remove default tooltip arrow */
+::ng-deep .unlink-tooltip .p-tooltip-arrow {
+  display: none !important;
+}

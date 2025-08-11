@@ -1,0 +1,117 @@
+.section-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.grid-3 input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+label {
+  font-size: 14px;
+  color: #444;
+}
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-header-description {
+  font-weight: 550;
+}
+mat-expansion-panel {
+  background-color: #e7f9f9 !important;
+  box-shadow: none !important;
+  border: 1px solid #ccc;
+}
+
+@media (max-width: 1024px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ✅ Responsive: For Mobile */
+@media (max-width: 600px) {
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.is-active-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-top: 15px;
+  flex: 1;
+  flex-direction: row !important; /* ensure horizontal */
+}
+
+.toggle-label {
+  font-size: 14px;
+  color: #444;
+  white-space: nowrap;
+  margin: 0;
+}
+
+/* Remove form-group stacking override for this case */
+.form-group.is-active-group {
+  flex-direction: row !important;
+}
+
+/* Toggle switch styles */
+.toggle-wrapper {
+  display: none;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 36px;
+  height: 20px;
+}
+
+.toggle-switch input {
+ opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #888;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.slider::before {
+   position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  top: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.toggle-switch input:checked + .slider {
+  background-color: #05b9bc;
+}
+
+.toggle-switch input:checked + .slider::before {
+  transform: translateX(16px);
+}
+
+

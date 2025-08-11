@@ -1,0 +1,131 @@
+.toast-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background: white;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.08);
+  color: #333;
+  font-family: "Segoe UI", sans-serif;
+  position: relative;
+  transition: all 0.3s ease;
+  z-index: 1000; /* Ensure on top */
+  pointer-events: auto; /* Allow clicks */
+}
+
+.toast-content {
+  flex-grow: 1;
+  margin-left: 12px;
+}
+
+.toast-title {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.toast-message {
+font-size: 13px;
+  color: black;
+  /* font-weight: bold; */
+}
+
+.icon {
+  font-size: 20px;
+  width: 25px;
+  height: 25px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon span{
+  font-size: 14px;
+}
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color:#444;
+  cursor: pointer !important;
+  margin-left: 12px;
+  transition: color 0.2s ease;
+  z-index: 2; /* ✅ add this */
+  position: relative;
+}
+
+.close-btn:hover {
+  color: #000;
+
+}
+
+/* Toast Types */
+.toaster-success {
+  background-color: #e1f8e6;
+}
+
+.toaster-error {
+  background-color: #ffe0e0;
+
+}
+
+.toaster-warning {
+  background-color: #fff4d4;
+
+}
+
+.toaster-info {
+  background-color: #d4e9ff;
+
+}
+
+/* Progress bar */
+.progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 6px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 12px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.progress-bar::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-color: #4caf50;
+  animation: progressFill var(--duration, 3000ms) linear forwards;
+  transform-origin: left;
+}
+
+.toaster-error .progress-bar::after {
+  background-color: #f44336;
+}
+
+.toaster-warning .progress-bar::after {
+  background-color: #ff9800;
+}
+
+.toaster-info .progress-bar::after {
+  background-color: #2196f3;
+}
+.toast-wrapper:hover .close-btn:hover ~ .progress-bar::after {
+  animation-play-state: paused;
+}
+@keyframes progressFill {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}

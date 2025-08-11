@@ -1,0 +1,58 @@
+<div class="modal-backdrop">
+  <div class="modal-content">
+    <!-- Header -->
+    <h2 class="modal-title">Add New Area Code</h2>
+    <button class="close-btn" type="button" (click)="onClose()">×</button>
+
+    <form [formGroup]="areaForm" (ngSubmit)="onSubmit()" class="form-container">
+      <!-- Row 1 -->
+      <div class="form-row">
+        <div class="form-field">
+          <label>Area Code <span class="required">*</span></label>
+          <input formControlName="areaCode" type="text" placeholder="00263" />
+          <div
+            class="error-msg"
+            *ngIf="formControls['areaCode'].touched && formControls['areaCode'].invalid"
+          >
+            <small *ngIf="formControls['areaCode'].errors?.['required']"
+              >Area Code is required.</small
+            >
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label>Description</label>
+          <input
+            formControlName="description"
+            type="text"
+            placeholder="Zimbabwe"
+          />
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="form-row">
+        <div class="form-field">
+          <label>Type</label>
+          <select formControlName="type">
+            <option value="Landline">Landline</option>
+            <option value="Mobile">Mobile</option>
+          </select>
+        </div>
+
+        <div class="form-checkbox">
+          <input type="checkbox" formControlName="isActive" />
+          <label>Is Active?</label>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="form-actions">
+        <button class="btn cancel-btn" type="button" (click)="onCancel()">
+          Cancel
+        </button>
+        <button class="btn submit-btn" type="submit">Save</button>
+      </div>
+    </form>
+  </div>
+</div>

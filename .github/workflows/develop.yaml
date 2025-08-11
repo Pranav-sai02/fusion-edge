@@ -1,0 +1,46 @@
+name: Build, publish and deploy to MonsterASP.NET
+on:
+  push:
+    branches: ["develop"] # Runs on push to main branch
+
+jobs:
+  build_and_deploy:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Chocolatey Package Manager
+        run: |
+          Set-ExecutionPolicy Bypass -Scope Process -Force
+          [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+          Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+      - name: Install Web Deploy
+        run: |
+          choco install webdeploy --confirm
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Dependencies
+        run: npm install
+      - name: Build Angular App
+        run: npm run build --prod
+
+      - name: dist list
+        run: ls dist/
+
+      - name: Deploy to MonsterASP.NET via WebDeploy
+        uses: rasmusbuchholdt/simply-web-deploy@2.1.0
+        with:
+          website-name: site27056 
+          server-computer-name: https://site27056.siteasp.net:8172
+          server-username: site27056
+          server-password: 7Pj#h4=S%qJ8
+          source-path: dist/fusion-edge/
+          target-path: /
+          additional-files: |
+            web.config
+

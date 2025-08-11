@@ -1,0 +1,54 @@
+.section-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.full-width {
+  width: 33%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn.cancel {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn.save {
+  background-color: #05b9bc;
+  color: white;
+}
+
+mat-expansion-panel {
+  background-color: #e7f9f9 !important;
+  box-shadow: none !important;
+  border: 1px solid #ccc;
+}
+
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-header-description {
+  font-weight: 550;
+}
+
+
+.half-width {
+  width: 50%;
+  min-width: 200px;
+}

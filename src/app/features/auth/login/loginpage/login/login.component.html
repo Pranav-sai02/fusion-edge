@@ -1,0 +1,50 @@
+<div class="parent">
+  <img src="assets/images/Van4.jpeg" alt="login background" class="bg-image" />
+  <!-- <img
+    src="assets/images/Van2.jpg"
+    alt="login background"
+    style="
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    "
+  /> -->
+
+  <div class="container">
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+      <h1>Sign In</h1>
+      <div class="input-box">
+        <input
+          type="email"
+          name="userName"
+          [(ngModel)]="loginObj.userName"
+          placeholder="Email"
+        />
+        <i class="bx bx-envelope"></i>
+      </div>
+
+      <div class="input-box">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          name="password"
+          [(ngModel)]="loginObj.password"
+          placeholder="Password"
+        />
+
+        <i
+          class="bx"
+          [ngClass]="showPassword ? 'bx-hide' : 'bx-show'"
+          (click)="togglePassword()"
+          style="cursor: pointer"
+        ></i>
+      </div>
+      <div class="remember">
+        <label for="#"> <input type="checkbox" /> Remember me </label>
+        <a href="#">Forgot password?</a>
+      </div>
+      <button class="btn" type="submit">Sign In</button>
+    </form>
+  </div>
+</div>

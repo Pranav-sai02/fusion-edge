@@ -1,0 +1,223 @@
+.editor-wrapper {
+  max-width: 1000px;
+  margin: 0 auto; /* center */
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+.claim-section {
+  /* background-color: #e5e5e5; */
+
+  border-radius: 4px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.field-label {
+  display: block;
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+.required {
+  color: red;
+}
+
+.text-input {
+  width: 33%;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.sub-label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  color: #444;
+  font-size: 14px;
+}
+.quill-editor {
+  margin-bottom: 30px; /* prevent last lines from being clipped */
+}
+::ng-deep .full-bg-panel {
+  background-color: #e7f9f9 !important;
+
+  box-shadow: none !important;
+  border: 1px solid #ccc !important;
+}
+
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-header-description {
+  font-weight: 550;
+}
+::ng-deep .full-bg-panel .ql-toolbar.ql-snow {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #ccc !important;
+}
+
+::ng-deep .full-bg-panel .ql-container.ql-snow {
+  background-color: #ffffff !important;
+  border-top: none !important;
+}
+
+.form-section {
+  background-color: #e7f9f9;
+  padding-top: 15px;
+  border-radius: 8px;
+}
+
+.form-label {
+  display: flex;
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+.form-textarea {
+  width: 100%;
+  resize: vertical;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.checkbox-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.checkbox-section label {
+  font-size: 12px;
+  color: #4f5b73;
+}
+
+
+.form-row {
+  display: flex;
+  gap: 187px;
+  margin-top: 16px;
+}
+
+.is-active-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-direction: row;
+}
+
+.toggle-label {
+  font-size: 14px;
+  color: #444;
+  white-space: nowrap;
+  min-width: 110px; /* adjust based on your label length */
+  margin: 0;
+}
+
+/* Toggle switch styling */
+.toggle-switch {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  display: inline-block;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #888;
+  transition: 0.3s;
+  border-radius: 20px;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  top: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.toggle-switch input:checked + .slider {
+  background-color: #05b9bc;
+}
+
+.toggle-switch input:checked + .slider::before {
+  transform: translateX(16px);
+}
+
+
+::ng-deep .ng-select {
+  border-radius: 4px !important;
+}
+::ng-deep .ng-dropdown-panel {
+  margin-top: 3px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+}
+::ng-deep .ng-select .ng-select-container {
+border-radius: 10px !important;
+margin-top: 5px !important;
+}
+::ng-deep .ng-dropdown-panel .scroll-host{
+border-radius: 10px !important;
+/* overflow-y: scroll !important;
+scrollbar-width: none !important; */
+}
+::ng-deep .ng-select.ng-select-single .ng-select-container {
+    height: 43px;
+}
+
+::ng-deep .ng-select .ng-arrow-wrapper {
+    width: 40px;
+}
+
+
+/* Clear (X) button */
+::ng-deep .ng-select .ng-clear-wrapper {
+display: none;
+}
+
+
+/* Dropdown panel */
+::ng-deep .ng-dropdown-panel {
+ overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-top: 4px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Dropdown option */
+::ng-deep .ng-dropdown-panel .ng-option {
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: white;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+/* Optional: last option no bottom border */
+::ng-deep .ng-dropdown-panel .ng-option:last-child {
+  border-bottom: none;
+}
+
+

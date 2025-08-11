@@ -1,0 +1,21 @@
+.driver-map {
+  width: 100%;
+  height: 400px;
+}
+
+/* Include expansion panel styling here too if not shared globally: */
+.mat-expansion-panel {
+  margin: 0 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #e0e0e0;
+  background-color: #fff;
+  margin-bottom: 12px;
+}
+
+.mat-expansion-panel-header {
+  padding: 0 16px;
+}
+
+.mat-expansion-panel:not([class*="mat-elevation-z"]) {
+  box-shadow: 0 0 5px #e0e0e0;
+}

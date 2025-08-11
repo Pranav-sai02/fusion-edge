@@ -1,0 +1,32 @@
+<div class="ag-theme-alpine" style="height: 500px; width: 100%">
+  <ag-grid-angular
+    class="ag-grid-responsive"
+    [rowData]="serviceProviders"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    rowSelection="single"
+    [pagination]="true"
+    [paginationPageSize]="20"
+    [domLayout]="'autoHeight'"
+    [components]="{
+      activeToggleRenderer: ActiveToggleRendererComponent,
+      softDeleteRenderer: SoftDeleteRendererComponent,
+      viewButtonRenderer: ViewButtonRendererComponent
+    }"
+    [animateRows]="true"
+    (gridReady)="onGridReady($event)"
+    [enableBrowserTooltips]="true"
+  >
+  </ag-grid-angular>
+</div>
+
+<app-service-providers-popup
+  *ngIf="showPopup"
+  [providerData]="selectedProvider"
+  [isEditMode]="!!selectedProvider"
+  [isEdit]="isEditMode"
+  [users]="users"
+  [serviceProviderTypes]="serviceProviderTypes"
+  (close)="showPopup = false"
+>
+</app-service-providers-popup>

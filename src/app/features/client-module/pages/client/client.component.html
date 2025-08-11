@@ -1,0 +1,24 @@
+<div class="ag-theme-alpine" style="height: 500px; width: 100%">
+  <ag-grid-angular
+    class="ag-grid-responsive"
+    [rowData]="clients"
+    [pagination]="true"
+    [paginationPageSize]="20"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    rowSelection="single"
+    [animateRows]="true"
+    [domLayout]="'autoHeight'"
+    [components]="components"
+    (gridReady)="onGridReady($event)"
+  >
+  </ag-grid-angular>
+</div>
+
+<!-- Popup -->
+<app-client-popup
+  *ngIf="selectedClient"
+  [clientToEdit]="selectedClient"
+  [isEditMode]="!!selectedClient"
+  (close)="closePopup()"
+></app-client-popup>

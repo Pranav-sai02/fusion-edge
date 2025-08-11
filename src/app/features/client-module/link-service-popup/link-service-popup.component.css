@@ -1,0 +1,238 @@
+/* Set general editor styling */
+::ng-deep .p-editor-container {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: "Segoe UI", sans-serif;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Hide toolbar if not needed */
+::ng-deep .p-editor-toolbar {
+  background-color: #f4f4f4;
+  border-bottom: 1px solid #ccc;
+  display: none; /* Set to flex or block if toolbar should be shown */
+}
+
+/* Editable content area */
+::ng-deep .p-editor-content {
+  padding: 12px;
+  min-height: 250px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+}
+
+/* Optional: Focus effect */
+::ng-deep .p-editor-container:focus-within {
+  border-color: #007ad9;
+  box-shadow: 0 0 0 2px rgba(0, 122, 217, 0.2);
+}
+
+/* Force toolbar icons to remain visible */
+::ng-deep .p-editor .ql-toolbar button svg path {
+  stroke: currentColor !important;
+  fill: none !important;
+}
+
+/* Remove hover effect on icon paths only */
+::ng-deep .p-editor .ql-toolbar button:hover svg path,
+::ng-deep .p-editor .ql-toolbar button:focus svg path {
+  stroke: currentColor !important;
+}
+
+/* Active formatting button */
+::ng-deep .p-editor .ql-toolbar button.ql-active svg path,
+::ng-deep .p-editor .ql-toolbar button[aria-pressed="true"] svg path {
+  stroke: #06c !important;
+}
+
+/* Style all toolbar buttons */
+::ng-deep .ql-snow.ql-toolbar button {
+  border: 1px solid gray;
+  margin-left: 8px;
+  background-color: white !important;
+  box-shadow: none !important;
+}
+
+/* ✅ Fully remove background on hover/focus */
+::ng-deep .ql-snow.ql-toolbar button:hover,
+::ng-deep .ql-snow.ql-toolbar button:focus {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.transfer-input {
+  height: 43px;
+  padding: 8px 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-top: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content.fullscreen {
+  background: var(--popup-bg-color);
+  width: 95%;
+  max-width: 1000px;
+  max-height: fit-content;
+  overflow-y: visible;
+  border-radius: var(--popup-border-radius);
+  padding: 30px;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-title {
+  font-size: var(--popup-header-font-size);
+  font-weight: bold;
+  color: var(--popup-header-text-color);
+  margin-bottom: 20px;
+  color: #05b9bc;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  color: var(--close-btn-color);
+  cursor: pointer;
+}
+.close-btn:hover {
+  color: red;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.form-field {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-btn {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.submit-btn {
+  background-color: #05b9bc;
+  color: #fff;
+}
+
+.error-msg small {
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+input::placeholder {
+  color: #b0b0b0; /* Light gray */
+}
+
+.required {
+  color: red;
+}
+
+::ng-deep .ng-select {
+  border-radius: 4px !important;
+}
+::ng-deep .ng-dropdown-panel {
+  margin-top: 3px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+}
+::ng-deep .ng-select .ng-select-container {
+  border-radius: 10px !important;
+  margin-top: 5px !important;
+}
+::ng-deep .ng-dropdown-panel .scroll-host {
+  border-radius: 10px !important;
+  /* overflow-y: scroll !important;
+scrollbar-width: none !important; */
+}
+::ng-deep .ng-select.ng-select-single .ng-select-container {
+  height: 43px;
+}
+
+::ng-deep .ng-select .ng-arrow-wrapper {
+  width: 40px;
+}
+
+/* Clear (X) button */
+::ng-deep .ng-select .ng-clear-wrapper {
+  display: none;
+}
+
+/* Dropdown panel */
+::ng-deep .ng-dropdown-panel {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-top: 4px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Dropdown option */
+::ng-deep .ng-dropdown-panel .ng-option {
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: white;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+/* Optional: last option no bottom border */
+::ng-deep .ng-dropdown-panel .ng-option:last-child {
+  border-bottom: none;
+}

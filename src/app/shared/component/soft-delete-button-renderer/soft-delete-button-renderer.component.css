@@ -1,0 +1,70 @@
+.soft-delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.soft-delete-btn:hover .delete-icon {
+  transform: scale(1.1);
+}
+
+
+::ng-deep .p-tooltip {
+  border-radius: 4px;
+  box-shadow: none !important;
+  padding: 6px 10px !important;
+  font-weight: bold !important;
+  font-size: 13px;
+  text-align: center;
+}
+
+
+
+
+::ng-deep .soft-delete-tooltip {
+  background-color: rgba(246, 242, 242,0.7) !important;
+  border: 1px solid black !important; /* 🟩 Add this line */
+  border-radius: 4px;
+  padding: 6px 10px !important;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+}
+
+::ng-deep .soft-delete-tooltip .p-tooltip-text {
+  color: red !important;
+}
+
+::ng-deep .soft-delete-tooltip.p-tooltip-top::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 7px solid rgba(246, 242, 242,0.7);
+  border:black ;
+}
+
+
+/* Remove Default Arrow */
+::ng-deep .soft-delete-tooltip .p-tooltip-arrow {
+  display: none !important;
+}
+
+
+
+
+

@@ -1,0 +1,165 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Client Data</mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <form class="section-form">
+      <div class="checkbox-row">
+        <div class="form-group is-active-group">
+          <label class="toggle-label">Use Membership Number</label>
+          <label class="toggle-switch">
+            <input
+              type="checkbox"
+              [(ngModel)]="useMembershipNumber"
+              name="useMembershipNumber"
+              (ngModelChange)="updateClientDataState()"
+            />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="form-group is-active-group">
+          <label class="toggle-label">Use Policy Lookup</label>
+          <label class="toggle-switch">
+            <input
+              type="checkbox"
+              [(ngModel)]="usePolicyLookup"
+              name="usePolicyLookup"
+              (ngModelChange)="updateClientDataState()"
+            />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="form-group is-active-group">
+          <label class="toggle-label">Use External File</label>
+          <label class="toggle-switch">
+            <input
+              type="checkbox"
+              [(ngModel)]="useExternalFile"
+              name="useExternalFile"
+              (ngModelChange)="updateClientDataState()"
+            />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="form-group is-active-group">
+          <label class="toggle-label">Use Web Validation</label>
+          <label class="toggle-switch">
+            <input
+              type="checkbox"
+              [(ngModel)]="useWebValidation"
+              name="useWebValidation"
+              (ngModelChange)="updateClientDataState()"
+            />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="form-group is-active-group">
+          <label class="toggle-label">Use Web Validation AVS</label>
+          <label class="toggle-switch">
+            <input
+              type="checkbox"
+              [(ngModel)]="useWebValidationAVS"
+              name="useWebValidationAVS"
+              (ngModelChange)="updateClientDataState()"
+            />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="form-group is-active-group">
+          <label class="toggle-label">Use Other Validation</label>
+          <label class="toggle-switch">
+            <input
+              type="checkbox"
+              [(ngModel)]="useOtherValidation"
+              name="useOtherValidation"
+              (ngModelChange)="updateClientDataState()"
+            />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="form-group is-active-group">
+          <label class="toggle-label">Use Text Export</label>
+          <label class="toggle-switch">
+            <input
+              type="checkbox"
+              [(ngModel)]="useTextExport"
+              name="useTextExport"
+              (ngModelChange)="updateClientDataState()"
+            />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="form-group is-active-group">
+          <label class="toggle-label">Use Web Validation OTH</label>
+          <label class="toggle-switch">
+            <input
+              type="checkbox"
+              [(ngModel)]="useWebValidationOTH"
+              name="useWebValidationOTH"
+              (ngModelChange)="updateClientDataState()"
+            />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <!-- Policy File -->
+        <div class="form-field">
+          <label for="policyFile" class="form-label">Policy File</label>
+          <ng-select
+            [items]="policyFiles"
+            bindLabel="label"
+            bindValue="value"
+            placeholder="Select"
+            [(ngModel)]="selectedValue"
+            name="policyFile"
+            (ngModelChange)="updateClientDataState()"
+            class="custom-select-style"
+          >
+          </ng-select>
+        </div>
+
+        <!-- Policy Lookup Path -->
+        <div class="form-field">
+          <label for="lookupPath" class="form-label">Policy Lookup Path</label>
+          <input
+            type="text"
+            id="lookupPath"
+            [(ngModel)]="policyLookupPath"
+            name="policyLookupPath"
+            (ngModelChange)="updateClientDataState()"
+            class="form-input"
+          />
+        </div>
+
+        <!-- Validation URL -->
+        <div class="form-field">
+          <label for="validationUrl" class="form-label">Validation URL</label>
+          <input
+            type="text"
+            id="validationUrl"
+            [(ngModel)]="validationUrl"
+            name="validationUrl"
+            (ngModelChange)="updateClientDataState()"
+            class="form-input"
+          />
+        </div>
+
+        <!-- Notes -->
+        <div class="form-field full-width">
+          <label for="notes" class="form-label">Notes</label>
+          <textarea
+            id="notes"
+            [(ngModel)]="notes"
+            name="notes"
+            (ngModelChange)="updateClientDataState()"
+            class="form-textarea"
+            rows="4"
+          ></textarea>
+        </div>
+      </div>
+    </form>
+  </mat-expansion-panel>
+</mat-accordion>

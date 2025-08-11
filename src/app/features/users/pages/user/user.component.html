@@ -1,0 +1,28 @@
+<div class="ag-theme-alpine" style="height: 500px; width: 100%">
+  <ag-grid-angular
+    class="ag-grid-responsive"
+    [rowData]="users"
+    [pagination]="true"
+    [paginationPageSize]="20"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    rowSelection="single"
+    [animateRows]="true"
+    [domLayout]="'autoHeight'"
+    [components]="{
+      activeToggleRenderer: ActiveToggleRendererComponent,
+      softDeleteRenderer: SoftDeleteRendererComponent,
+      viewButtonRenderer: ViewButtonRendererComponent
+    }"
+    (gridReady)="onGridReady($event)"
+  >
+  </ag-grid-angular>
+</div>
+
+<app-userpopup
+  *ngIf="selectedUser"
+  [userData]="editedUser"
+  [initialData]="selectedUser"
+  [isEditMode]="true"
+  (close)="closePopup()"
+></app-userpopup>

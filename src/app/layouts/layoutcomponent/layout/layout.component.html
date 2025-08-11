@@ -1,0 +1,16 @@
+<div class="app-container-vertical">
+  <app-header (sidebarToggle)="toggleSidebar()"></app-header>
+
+  <div class="app-container">
+    <app-sidebar [collapsed]="isSidebarCollapsed"></app-sidebar>
+
+    <div class="main-content">
+      <div class="content-wrapper">
+        <app-breadcrumb></app-breadcrumb>
+        <div class="outlet">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

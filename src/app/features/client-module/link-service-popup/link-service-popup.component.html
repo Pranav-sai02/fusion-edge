@@ -1,0 +1,81 @@
+<div class="modal-backdrop">
+  <div class="modal-content fullscreen">
+    <h2 class="modal-title"><i class="fas fa-edit"></i> Add Client Services</h2>
+    <button class="close-btn" type="button" (click)="onClose()">&times;</button>
+
+    <form
+      [formGroup]="clientServiceForm"
+      (ngSubmit)="onSubmit()"
+      class="form-container"
+    >
+      <!-- Service Type Dropdown -->
+      <div class="form-row">
+        <div class="form-field">
+          <label>Services <span class="required">*</span></label>
+          <ng-select
+            [items]="servicePage"
+            bindLabel="Description"
+            bindValue="ServiceId"
+            formControlName="ServiceId"
+            [searchable]="true"
+            [clearable]="true"
+            [closeOnSelect]="true"
+            placeholder="Select Service Type"
+            class="service-type custom-select-with-icon"
+          ></ng-select>
+
+          <div
+            class="error-msg"
+            *ngIf="
+              formControl['ServiceId'].touched &&
+              formControl['ServiceId'].invalid
+            "
+          >
+            <small *ngIf="formControl['ServiceId'].errors?.['required']"
+              >Service Type is required.</small
+            >
+          </div>
+        </div>
+            <div class="form-field">
+          <label>Transfer Number</label>
+          <input
+            type="text"
+            formControlName="TransferNumber"
+            placeholder="Enter transfer number"
+            class="transfer-input"
+          />
+        </div>
+      </div>
+
+      <!-- Note Section -->
+      <div class="form-row">
+        <div class="form-field">
+          <label>Note <span class="required">*</span></label>
+          <p-editor
+            formControlName="Note"
+            [style]="{ height: '200px' }"
+            [modules]="editorModules"
+          ></p-editor>
+
+          <div
+            class="error-msg"
+            *ngIf="formControl['Note'].touched && formControl['Note'].invalid"
+          >
+            <small *ngIf="formControl['Note'].errors?.['required']"
+              >Note is required.</small
+            >
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Action Buttons -->
+      <div class="form-actions">
+        <button class="btn cancel-btn" type="button" (click)="onCancel()">
+          Cancel
+        </button>
+        <button class="btn submit-btn" type="submit">Add</button>
+      </div>
+    </form>
+  </div>
+</div>

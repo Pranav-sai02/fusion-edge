@@ -1,0 +1,187 @@
+<div class="modal-backdrop">
+  <div class="modal-content">
+    <button class="close-btn" (click)="confirmClose()">✖</button>
+    <div class="overlay" *ngIf="showConfirmModal">
+      <div class="modal">
+        <p style="font-family: Arial">
+          <!-- There are unsaved updates. Are you sure you want to close this form? -->
+          You have unsaved changes. Are you sure you want to close this form?
+        </p>
+        <div class="btns">
+          <button class="yes-btn" (click)="confirmYes()">Yes</button>
+          <button class="no-btn" (click)="showConfirmModal = false">No</button>
+        </div>
+      </div>
+    </div>
+    <!-- <h2 class="modal-title"><i class="fas fa-edit"></i> Create New Client</h2> -->
+
+    <h2 class="modal-title">
+      <i class="fas" [ngClass]="isEditMode ? 'fas fa-edit' : 'fas fa-edit'"></i>
+      {{ isEditMode ? "Edit Client" : "Create New Client" }}
+    </h2>
+    <!-- Success Popup -->
+    <div class="success-popup" *ngIf="showSuccess">
+      <span>Client saved successfully</span>
+      <button class="close-success" (click)="showSuccess = false">✖</button>
+    </div>
+
+    <div class="caller-container">
+      <div class="tabs-wrapper">
+        <div class="tab-print-button">
+          <!-- <ul class="tab-header">
+            <li [class.active]="selectedTab === 0" (click)="selectTab(0)">
+              Details
+            </li>
+            <li [class.active]="selectedTab === 1" (click)="selectTab(1)">
+              Services
+            </li>
+            <li [class.active]="selectedTab === 2" (click)="selectTab(2)">
+              Rating Questions
+            </li>
+            <li [class.active]="selectedTab === 3" (click)="selectTab(3)">
+              Documents
+            </li>
+            <li [class.active]="selectedTab === 4" (click)="selectTab(4)">
+              Claim Centre
+            </li>
+            <li [class.active]="selectedTab === 5" (click)="selectTab(5)">
+              Service Provider
+            </li>
+            <li [class.active]="selectedTab === 6" (click)="selectTab(6)">
+              Claim Controller
+            </li>
+          </ul> -->
+
+          <ul class="tab-header">
+            <li
+              [class.active]="selectedTab === Tab.Details"
+              (click)="selectTab(Tab.Details)"
+            >
+              Details
+            </li>
+            <li
+              [class.active]="selectedTab === Tab.Services"
+              (click)="selectTab(Tab.Services)"
+            >
+              Services
+            </li>
+            <li
+              [class.active]="selectedTab === Tab.RatingQuestions"
+              (click)="selectTab(Tab.RatingQuestions)"
+            >
+              Rating Questions
+            </li>
+            <li
+              [class.active]="selectedTab === Tab.Documents"
+              (click)="selectTab(Tab.Documents)"
+            >
+              Documents
+            </li>
+            <li
+              [class.active]="selectedTab === Tab.ClaimCentre"
+              (click)="selectTab(Tab.ClaimCentre)"
+            >
+              Claim Centre
+            </li>
+            <li
+              [class.active]="selectedTab === Tab.ServiceProvider"
+              (click)="selectTab(Tab.ServiceProvider)"
+            >
+              Service Provider
+            </li>
+            <li
+              [class.active]="selectedTab === Tab.ClaimController"
+              (click)="selectTab(Tab.ClaimController)"
+            >
+              Claim Controller
+            </li>
+          </ul>
+
+          <button class="print-btn" (click)="printPage()">
+            <div class="tooltip-container1">
+              <i class="fa fa-print"></i>
+              <span class="custom-tooltip1"> Print</span>
+            </div>
+          </button>
+        </div>
+        <div class="green-strip"></div>
+
+        <!-- <div class="tab-body">
+          <app-client-details *ngIf="selectedTab === 0"></app-client-details>
+          <app-client-services *ngIf="selectedTab === 1"></app-client-services>
+          <app-rating-questions
+            *ngIf="selectedTab === 2"
+          ></app-rating-questions>
+          <app-documents *ngIf="selectedTab === 3"></app-documents>
+          <app-claim-centre *ngIf="selectedTab === 4"></app-claim-centre>
+          <app-service-provider
+            *ngIf="selectedTab === 5"
+          ></app-service-provider>
+          <app-claim-controller
+            *ngIf="selectedTab === 6"
+          ></app-claim-controller>
+        </div> -->
+
+        <div class="tab-body">
+          <app-client-details
+            *ngIf="loadedTabs[Tab.Details]"
+            [hidden]="selectedTab !== Tab.Details"
+          >
+          </app-client-details>
+
+          <app-client-services
+            *ngIf="loadedTabs[Tab.Services]"
+            [hidden]="selectedTab !== Tab.Services"
+          >
+          </app-client-services>
+
+          <app-rating-questions
+            *ngIf="loadedTabs[Tab.RatingQuestions]"
+            [hidden]="selectedTab !== Tab.RatingQuestions"
+          >
+          </app-rating-questions>
+
+          <app-documents
+            *ngIf="loadedTabs[Tab.Documents]"
+            [hidden]="selectedTab !== Tab.Documents"
+          >
+          </app-documents>
+
+          <app-claim-centre
+            *ngIf="loadedTabs[Tab.ClaimCentre]"
+            [hidden]="selectedTab !== Tab.ClaimCentre"
+          >
+          </app-claim-centre>
+
+          <app-service-provider
+            *ngIf="loadedTabs[Tab.ServiceProvider]"
+            [hidden]="selectedTab !== Tab.ServiceProvider"
+          >
+          </app-service-provider>
+
+          <app-claim-controller
+            *ngIf="loadedTabs[Tab.ClaimController]"
+            [hidden]="selectedTab !== Tab.ClaimController"
+          >
+          </app-claim-controller>
+        </div>
+      </div>
+    </div>
+    <div class="active">
+      <div class="checkbox-row1">
+        <div class="form-group is-active-group">
+          <label class="toggle-label">IsActive?</label>
+          <label class="toggle-switch">
+            <input type="checkbox" />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+      <div class="button-group">
+        <button class="btn cancel" (click)="confirmClose()">Cancel</button>
+
+        <button class="btn save" (click)="save()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

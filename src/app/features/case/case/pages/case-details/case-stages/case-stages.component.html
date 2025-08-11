@@ -1,0 +1,24 @@
+<mat-expansion-panel class="mat-expansion-panel">
+  <mat-expansion-panel-header>
+    <mat-panel-title>Case Stages</mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <!-- Angular Material Stepper -->
+  <mat-horizontal-stepper #stepper linear>
+    <mat-step [completed]="true">
+      <ng-template matStepLabel>Case Initiation</ng-template>
+    </mat-step>
+    <mat-step [completed]="false">
+      <ng-template matStepLabel>Evaluation</ng-template>
+    </mat-step>
+    <mat-step [completed]="false">
+      <ng-template matStepLabel>Ongoing</ng-template>
+    </mat-step>
+    <mat-step [completed]="false">
+      <ng-template matStepLabel>On Hold</ng-template>
+    </mat-step>
+    <mat-step [completed]="false">
+      <ng-template matStepLabel>Resolution</ng-template>
+    </mat-step>
+  </mat-horizontal-stepper>
+</mat-expansion-panel>

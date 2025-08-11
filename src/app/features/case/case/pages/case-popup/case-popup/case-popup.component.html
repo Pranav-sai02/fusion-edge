@@ -1,0 +1,56 @@
+<!-- Popup HTML -->
+<div class="overlay">
+  <div class="form-wrapper">
+    <div class="popup-header">
+      <h3 class="popup-title">
+        <i class="fas fa-edit"></i> Create a New Call
+      </h3>
+      <button class="close-btn" type="button" (click)="onClose()">×</button>
+    </div>
+
+    <div class="form-row">
+      <!-- Client Dropdown -->
+      <div class="form-group">
+        <label>Client Name <span class="required">*</span></label>
+        <ng-select
+          [items]="clients"
+          bindLabel="ClientName"
+          bindValue="ClientId"
+          formControlName="ClientId"
+          [clearable]="true"
+          [searchable]="true"
+          [closeOnSelect]="true"
+        >
+          <ng-template ng-option-tmp let-item="item">
+            <div class="option-box">{{ item.ClientName }}</div>
+          </ng-template>
+        </ng-select>
+      </div>
+
+      <!-- Service Dropdown -->
+      <div class="form-group">
+        <label>Service <span class="required">*</span></label>
+        <ng-select
+          [items]="services"
+          bindLabel="Description"
+          bindValue="ServiceId"
+          formControlName="ServiceId"
+          [clearable]="true"
+          [searchable]="true"
+          [closeOnSelect]="true"
+        >
+          <ng-template ng-option-tmp let-item="item">
+            <div class="option-box">{{ item.Description }}</div>
+          </ng-template>
+        </ng-select>
+      </div>
+    </div>
+
+     <!-- Action Buttons -->
+      <div class="form-actions">
+       <button class="btn cancel-btn" type="button" (click)="onClose()"> Cancel </button>
+
+        <button class="btn submit-btn" type="submit" (click)="onSave()">Save</button>
+      </div>
+  </div>
+</div>

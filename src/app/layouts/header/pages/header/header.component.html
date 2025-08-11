@@ -1,0 +1,53 @@
+<div class="topbar">
+  <!-- <div class="date-box">
+    {{ currentDateOnly }}
+  </div> -->
+
+  <div class="logo">
+    <div class="logo-text">
+      <span class="fusion" aria-hidden="true"></span>
+      <div class="logo-edge">
+        <span
+          class="hamburger-btn"
+          (click)="toggleSidebar()"
+          aria-label="Toggle Sidebar"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </span>
+
+        <div class="logo-icon">
+          <img src="assets/icons/logo1.png" alt="Logo" class="logo-icon1" />
+
+          <!-- Fusion Edge Text Logo (as Image) -->
+          <img
+            src="assets/icons/Fusion-text-logo.png"
+            alt="Fusion Edge Logo"
+            class="logo-text-icon"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topbar-right">
+    <div class="last-login">
+      Last Login Date:
+      {{ currentDateTime | date : "EEE, MMM dd, y, hh:mm:ss a" }}
+    </div>
+
+    <div class="user-container">
+      <div class="user-details">
+        <img class="avatar" src="assets/icons/profilepic.png" alt="User" />
+        <div class="welcome-text">
+          <span class="welcome-label">Welcome </span>
+          <strong>Admin Admin </strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Font Awesome Classic Logout Icon -->
+    <div class="logout-icon" (click)="confirmLogout($event)">
+      <i class="fas fa-sign-out-alt" title="Logout"></i>
+    </div>
+  </div>
+</div>

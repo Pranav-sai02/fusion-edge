@@ -1,0 +1,48 @@
+<div class="modal-content fullscreen notepad-container">
+  <h2 class="modal-title"><i class="fas fa-edit"></i> Company Details</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+    <!-- 📍 Address Row (Two Columns) -->
+    <div class="form-row">
+      <!-- Physical Address -->
+      <div class="form-section half-width">
+        <label>Physical Address</label>
+        <p-editor
+          formControlName="physicalAddress"
+          [modules]="editorModules"
+          class="editor-box"
+        ></p-editor>
+      </div>
+
+      <!-- Postal Address -->
+      <div class="form-section half-width">
+        <label>Postal Address</label>
+        <p-editor
+          formControlName="postalAddress"
+          [modules]="editorModules"
+          class="editor-box"
+        ></p-editor>
+      </div>
+    </div>
+
+    <!-- 🖼 Company Logo -->
+    <div class="form-section">
+      <label>Company Logo</label>
+      <div class="file-input-row">
+        <input class="file-name" [value]="selectedFileName" readonly />
+        <label class="file-btn">
+          Select
+          <input type="file" (change)="onFileSelected($event)" />
+        </label>
+      </div>
+      <a class="file-link" href="{{ currentFileUrl }}" target="_blank">
+        Click here to view the current file
+      </a>
+    </div>
+
+    <!-- ✅ Submit Button -->
+    <div class="submit-row">
+      <button class="btn" type="submit">Update</button>
+    </div>
+  </form>
+</div>

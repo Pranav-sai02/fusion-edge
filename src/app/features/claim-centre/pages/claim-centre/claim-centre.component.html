@@ -1,0 +1,25 @@
+<div class="ag-grid-wrapper">
+  <div class="ag-theme-alpine ag-grid-custom">
+    <ag-grid-angular
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      rowSelection="single"
+      [pagination]="true"
+      [paginationPageSize]="20"
+      [domLayout]="'autoHeight'"
+      [components]="components"
+      [animateRows]="true"
+      (gridReady)="onGridReady($event)"
+      [enableBrowserTooltips]="true"
+    ></ag-grid-angular>
+  </div>
+</div>
+
+<app-claim-centre-popup
+  *ngIf="showClaimCentrePopup"
+  [initialData]="editedClaimCentre"
+  [isEditMode]="true"
+  (close)="closePopup()"
+>
+</app-claim-centre-popup>

@@ -1,0 +1,160 @@
+<div class="validation-wrapper">
+  <div class="form-section">
+    <div class="form-row-row">
+      <div class="form-group">
+        <label for="policyNumber">Policy Number</label>
+        <input
+          id="policyNumber"
+          type="text"
+          class="form-control full-width"
+          [(ngModel)]="validation.policyNumber"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          id="firstName"
+          type="text"
+          class="form-control full-width"
+          [(ngModel)]="validation.firstName"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Surname</label>
+        <input
+          id="lastName"
+          type="text"
+          class="form-control full-width"
+          [(ngModel)]="validation.lastName"
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label for="idNumber">ID Number</label>
+      <input
+        id="idNumber"
+        type="text"
+        class="form-control full-width"
+        [(ngModel)]="validation.idNumber"
+      />
+    </div>
+  </div>
+
+  <div class="validation-panels">
+    <!-- Left Panel -->
+    <div class="left-panel">
+      <h3 class="section-title">Validation</h3>
+
+      <div class="form-row d-flex align-items-start mb-2">
+        <div style="flex: 1; margin-top: 7px">
+          <label>Validation Method</label>
+        </div>
+
+        <div
+          style="
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-left: 20px;
+          "
+        >
+          <div class="form-group is-active-group">
+            <label class="toggle-label">Fusion Database</label>
+            <label class="toggle-switch">
+              <input type="checkbox" [(ngModel)]="validation.fusionDb" />
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="form-group is-active-group">
+            <label class="toggle-label">Website Verification</label>
+            <label class="toggle-switch">
+              <input
+                type="checkbox"
+                [(ngModel)]="validation.websiteVerification"
+              />
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="form-group is-active-group">
+            <label class="toggle-label">Member Certificate</label>
+            <label class="toggle-switch">
+              <input
+                type="checkbox"
+                [(ngModel)]="validation.memberCertificate"
+              />
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="form-group is-active-group">
+            <label class="toggle-label">Telephonically</label>
+            <label class="toggle-switch">
+              <input type="checkbox" [(ngModel)]="validation.telephonically" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row1">
+        <label for="benefitValid">Benefit Valid</label>
+        <ng-select
+          id="benefitValid"
+          [items]="['yes', 'no']"
+          [(ngModel)]="validation.benefitValid"
+          [clearable]="true"
+          [searchable]="false"
+          [placeholder]="'Select'"
+        >
+          <ng-template ng-option-tmp let-item="item">
+            <div class="option-box text-capitalize">{{ item }}</div>
+          </ng-template>
+        </ng-select>
+      </div>
+
+      <div class="btn-container">
+        <button class="validate-btn" (click)="onValidate()">Validate</button>
+      </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-panel">
+      <h3 class="section-title">Previous Validation</h3>
+
+      <div class="form-row">
+        <label>Date of Validation</label>
+        <input
+          type="text"
+          class="form-control full-width"
+          [(ngModel)]="previousValidation.date"
+        />
+      </div>
+
+      <div class="form-row">
+        <label>Validated By</label>
+        <input
+          type="text"
+          class="form-control full-width"
+          [(ngModel)]="previousValidation.validatedBy"
+        />
+      </div>
+
+      <div class="form-row">
+        <label>Benefit Valid</label>
+        <select
+          class="form-control full-width"
+          [(ngModel)]="previousValidation.benefitValid"
+        >
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>

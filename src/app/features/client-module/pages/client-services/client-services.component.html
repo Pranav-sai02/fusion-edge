@@ -1,0 +1,33 @@
+<div class="documents-container">
+  <div class="header">
+    <!-- Link New Service Button -->
+    <button class="link-button" (click)="showPopup = true">
+      <i class="fas fa-link"></i> Link New Service
+    </button>
+  </div>
+
+  <app-link-service-popup
+    *ngIf="showPopup"
+    (close)="showPopup = false"
+    (formSubmit)="onServiceLinked($event)"
+  >
+  </app-link-service-popup>
+
+  <!-- AG Grid -->
+  <div class="ag-theme-alpine">
+    <ag-grid-angular
+      class="ag-theme-alpine grid-full"
+      [rowData]="rows"
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      [components]="{
+        unlinkCellRenderer: UnlinkCellRendererComponent
+      }"
+      [pagination]="true"
+      [paginationPageSize]="20"
+      (gridReady)="onGridReady($event)"
+      [domLayout]="'autoHeight'"
+    >
+    </ag-grid-angular>
+  </div>
+</div>

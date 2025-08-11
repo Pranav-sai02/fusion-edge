@@ -1,0 +1,26 @@
+{
+  "transportOperators": [
+    {
+      "TransportOperatorId": 1,
+      "Name": "Eric Sibiya",
+      "Branch": "Johannesburg",
+      "Province": "Gauteng",
+      "Country": "South Africa",
+      "IsActive": true,
+      "isDeleted": false,
+      "isEdited": false,
+      "id": "8423"
+    },
+    {
+      "TransportOperatorId": 2,
+      "Name": "Lunga Stemela",
+      "Branch": "Cape Town",
+      "Province": "Western Cape",
+      "Country": "South Africa",
+      "IsActive": true,
+      "isDeleted": false,
+      "isEdited": false,
+      "id": "2c00"
+    }
+  ]
+}

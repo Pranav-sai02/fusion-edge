@@ -1,0 +1,28 @@
+<div class="ag-theme-alpine">
+  <ag-grid-angular
+    class="ag-theme-alpine grid-full"
+    [rowData]="rows"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [components]="{
+      activeToggleRenderer: ActiveToggleRendererComponent,
+      softDeleteRenderer: SoftDeleteRendererComponent,
+      viewButtonRenderer: ViewButtonRendererComponent
+    }"
+    [pagination]="true"
+    [paginationPageSize]="20"
+    (gridReady)="onGridReady($event)"
+    (firstDataRendered)="onFitColumns()"
+    (gridSizeChanged)="onFitColumns()"
+    [domLayout]="'autoHeight'"
+  >
+  </ag-grid-angular>
+</div>
+
+<app-services-page-popup
+  *ngIf="showPopup"
+  [service]="selectedService"
+  [isEditMode]="!!selectedService"
+  (close)="closePopup()"
+  (formSubmit)="onServiceFormSubmit($event)"
+></app-services-page-popup>

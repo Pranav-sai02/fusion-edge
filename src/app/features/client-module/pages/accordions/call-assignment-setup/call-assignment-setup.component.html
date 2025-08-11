@@ -1,0 +1,34 @@
+<mat-accordion>
+  <mat-expansion-panel [expanded]="false" panelClass="no-overflow">
+    <mat-expansion-panel-header>
+      <mat-panel-title>Call Assignment Setup</mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="section-form">
+      <p>
+        <strong>NOTE:</strong> Default assignment of calls are: All Calls to
+        case controller, except Repat Claims assigned to claims controllers.
+      </p>
+
+      <label for="roleSelect">Select role to assign all calls to:</label>
+      <ng-select
+        [items]="roles"
+        bindLabel="label"
+        bindValue="value"
+        placeholder="Select"
+        [searchable]="true"
+        [clearable]="true"
+        [(ngModel)]="selectedRole"
+        [appendTo]="'body'"
+        [dropdownPosition]="'bottom'"
+        class="custom-select-style half-width"
+      >
+      </ng-select>
+    </div>
+
+    <div class="button-group">
+      <!-- <button class="btn cancel">Cancel</button>
+      <button class="btn save">Save</button> -->
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

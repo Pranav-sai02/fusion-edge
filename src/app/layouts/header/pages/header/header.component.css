@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.fa-bars {
+  font-size: 25px;
+  margin-bottom: 8px;
+
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: #fff;
+}
+
+.hamburger-btn {
+  display: inline-block;
+}
+
+.topbar,
+.topbar-right {
+  overflow: visible !important;
+  position: relative;
+  z-index: 10;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #003572;
+
+  padding: 10px 20px;
+}
+
+.topbar-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+
+.last-login {
+  font-size: 0.95rem;
+  color: #05b9bc;
+  border: 1px solid #05b9bc;
+  padding: 10px 10px;
+  border-radius: 10px;
+  height: 40px;
+}
+
+.user-details {
+  display: flex;
+  align-items: center;
+  background-color: #f2f2f2;
+  padding: 6px 12px;
+  border-radius: 8px;
+  gap: 8px;
+  height: 40px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.welcome-text {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.welcome-text strong {
+  margin-left: 5px;
+}
+
+.welcome-label {
+  color: #05b9bc;
+}
+
+.user-container {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  z-index: 100;
+}
+
+.logout-icon {
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  color: white;
+}
+
+/* .logout-icon:hover {
+  background-color: #f0f0f0;
+} */
+
+.logout-icon i {
+  font-size: 1.4rem;
+}
+
+.edge {
+  color: #00b4b6;
+  margin-bottom: 10px;
+}
+
+.logo {
+  height: 44px;
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 100%;
+  position: relative;
+}
+
+.logo-edge {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+}
+.logo-icon,
+.logo-text-icon {
+  /*  height: 25px;  Adjust height as needed */
+  object-fit: contain;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  gap: 10px;
+}
+
+.logo-edge {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.hamburger-btn {
+  cursor: pointer;
+}
+
+.logo-icon1 {
+  height: 26px;
+}
+
+::ng-deep .mat-mdc-button:not(:disabled){
+color: white !important;
+background-color: #e74c3c !important;
+ padding: 0 15px;
+}
+::ng-deep .mat-mdc-raised-button:not(:disabled){
+  color: white !important;
+  background-color: #05b9bc !important;
+ padding: 0 15px;
+}

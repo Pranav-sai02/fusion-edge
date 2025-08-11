@@ -1,0 +1,116 @@
+.toolbar-container {
+  padding: 10px !important; /* Increase padding */
+  min-height: 50px; /* Increase height */
+  gap: 1.5rem;
+  width: 1260px;
+  height: 100px;
+  margin-top: -16px;
+  margin-left: -14px;
+
+  /* Increase spacing between elements */
+}
+/* Dropdown styling */
+select.form-select {
+  width: 420px;
+  height: 50px;
+  border: 1px solid #05b9bc !important;
+  color: #05b9bc !important;
+  border-radius: 10px;
+  padding: 0.6rem;
+  background-color: white;
+  margin-right: 20px;
+  margin: 10px 10px 10px 10px;
+}
+
+select.form-select option {
+  color: #05b9bc;
+  background-color: white;
+  /* background color of the options */
+}
+
+/* Input group container */
+.input-group {
+  width: 420px;
+  height: 50px;
+  border: 1px solid #05b9bc !important;
+  border-radius: 10px;
+  overflow: visible;
+}
+
+/* Icon span in input group */
+.input-group-text {
+  background-color: #ffffff;
+  border: 1px;
+  color: #05b9bc !important;
+  font-size: 1rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+/* Input field */
+.input-group .form-control {
+  border: none;
+  box-shadow: none;
+  color: #05b9bc !important;
+}
+
+/* Buttons (Reset and New) */
+.btn.btn-secondary {
+  background-color: #05b9bc;
+  /* match the grey tone in image */
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 500;
+  box-shadow: none;
+  width: 98px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  margin-top: 8px;
+}
+
+.btn.btn-secondary i {
+  font-size: 0.9rem;
+}
+
+/* Placeholder text color */
+.input-group .form-control::placeholder {
+  color: #05b9bc;
+  opacity: 1;
+  /* Ensures the color is applied */
+}
+
+/* Icon color */
+.input-group .input-group-text i.fas.fa-search {
+  color: #05b9bc !important;
+}
+
+/* exportbtn */
+
+.export-btn {
+  margin-top: 8px;
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #05b9bc;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 95px;
+  height: 50px;
+
+  font-weight: 500;
+}
+
+.export-btn:hover {
+  background-color: #0056b3;
+}
+
+.export-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 4px;
+}

@@ -1,0 +1,54 @@
+<div class="caller-container">
+  <div class="tabs-wrapper">
+    <div class="menu-icon">
+      <ul class="tab-header">
+        <li
+          *ngFor="let tab of tabs; let i = index"
+          [class.active]="selectedTab === i"
+          (click)="selectTab(i)"
+        >
+          {{ tab.label }}
+          <span
+            *ngIf="tab.type?.startsWith('phase')"
+            class="close-icon"
+            (click)="removeTab(i, $event)"
+          >
+            ✖
+          </span>
+        </li>
+      </ul>
+
+      <!-- Add Phase Button -->
+      <div
+        class="menu-wrapper"
+        *ngIf="phaseCount < maxPhases"
+        (click)="toggleMenu()"
+      >
+        <div class="tooltip-container">
+          <i class="fa-solid fa-square-plus"></i>
+          <span class="custom-tooltip">Add Phase</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional decorative strip -->
+    <div class="green-strip"></div>
+
+    <!-- Tab content area -->
+    <div class="tab-body">
+      <ng-container *ngIf="tabs[selectedTab]" [ngSwitch]="tabs[selectedTab].type">
+        <app-caller *ngSwitchCase="'caller'"></app-caller>
+         <app-deceased-info *ngSwitchCase="'deceased-info'"></app-deceased-info>
+        <app-cause-of-death *ngSwitchCase="'cause-of-death'"></app-cause-of-death>
+        <app-validation *ngSwitchCase="'validation'"></app-validation>
+        <app-voucher-sms *ngSwitchCase="'voucher'"></app-voucher-sms>
+        <app-complaints *ngSwitchCase="'complaints'"></app-complaints>
+        <app-documents *ngSwitchCase="'documents'"></app-documents>
+        <app-add-phase1 *ngSwitchCase="'phase1'"></app-add-phase1>
+        <app-add-phase2 *ngSwitchCase="'phase2'"></app-add-phase2>
+        <app-add-phase3 *ngSwitchCase="'phase3'"></app-add-phase3>
+        <app-add-phase4 *ngSwitchCase="'phase4'"></app-add-phase4>
+      </ng-container>
+    </div>
+  </div>
+</div>

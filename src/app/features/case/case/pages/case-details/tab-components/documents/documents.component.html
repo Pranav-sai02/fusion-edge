@@ -1,0 +1,39 @@
+<div class="upload-container">
+  <div class="upload-box">
+    <div class="upload-left">
+      <label class="upload-label">Upload a File:</label>
+      <input type="file" #fileInput (change)="onFileSelected($event)" />
+    </div>
+    <button class="save-btn" (click)="onUpload(fileInput)">
+      <div class="tooltip-container">
+        <i class="fa fa-plus-circle"></i>
+        <span class="custom-tooltip">Save Document</span>
+      </div>
+    </button>
+  </div>
+
+  <div class="table-header">
+    <button class="print-btn" (click)="printPage()">
+      <div class="tooltip-container1">
+        <i class="fa fa-print"></i>
+        <span class="custom-tooltip1"> Print</span>
+      </div>
+    </button>
+  </div>
+
+  <div class="ag-theme-alpine" style="width: 100%; height: 400px">
+    <ag-grid-angular
+      class="ag-grid-responsive"
+      [rowData]="uploadedFiles"
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      rowSelection="single"
+      [pagination]="true"
+      [paginationPageSize]="20"
+      [domLayout]="'autoHeight'"
+      (gridReady)="onGridReady($event)"
+      [animateRows]="true"
+    >
+    </ag-grid-angular>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+<mat-accordion>
+  <mat-expansion-panel class="full-bg-panel" [expanded]="false">
+    <mat-expansion-panel-header>
+      <mat-panel-title> Claim Information </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="claim-section">
+      <div class="form-group">
+        <label for="claimsManager" class="field-label">
+          Claims Manager <span class="required">*</span>
+        </label>
+        <ng-select
+          [items]="claimsManagers"
+          bindLabel="label"
+          bindValue="value"
+          [(ngModel)]="selectedManager"
+          (ngModelChange)="updateClaimState()"
+          placeholder="Select Claims Manager"
+          class="text-input"
+        >
+        </ng-select>
+      </div>
+
+      <label class="sub-label">Claim Form Declaration</label>
+    </div>
+
+    <quill-editor
+      [(ngModel)]="editorContent"
+      (ngModelChange)="updateClaimState()"
+      [styles]="{ height: '300px' }"
+      theme="snow"
+      placeholder="Write something cool..."
+    ></quill-editor>
+
+    <div class="form-section">
+      <label for="claimDeclaration" class="form-label">
+        Claim Form Declaration Plain
+      </label>
+      <textarea
+        id="claimDeclaration"
+        [(ngModel)]="claimDeclaration"
+        (ngModelChange)="updateClaimState()"
+        rows="2"
+        class="form-textarea"
+      ></textarea>
+
+      <div class="form-row">
+        <div class="form-group is-active-group">
+          <label class="toggle-label">Process Claims?</label>
+          <label class="toggle-switch">
+            <input
+              type="checkbox"
+              [(ngModel)]="processClaims"
+              (ngModelChange)="updateClaimState()"
+            />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="form-group is-active-group">
+          <label class="toggle-label">Nearest Claim Centre?</label>
+          <label class="toggle-switch">
+            <input
+              type="checkbox"
+              [(ngModel)]="nearestClaimCentre"
+              (ngModelChange)="updateClaimState()"
+            />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="form-group is-active-group">
+          <label class="toggle-label">
+            Enable Death Claim Voucher Export?
+          </label>
+          <label class="toggle-switch">
+            <input
+              type="checkbox"
+              [(ngModel)]="enableDeathClaimVoucher"
+              (ngModelChange)="updateClaimState()"
+            />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

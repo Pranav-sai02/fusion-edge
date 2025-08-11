@@ -1,0 +1,33 @@
+.voucher-container {
+  background-color: var(--tab-bg-color);
+  margin-top: 16px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.voucher-section h4 {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 0;
+}
+
+.voucher-card {
+  background-color: #fff;
+  border: 1px solid #efefef;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.voucher-card h5 {
+  margin-top: 0;
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.voucher-card p {
+  color: #888;
+  margin: 0;
+}

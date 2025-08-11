@@ -1,0 +1,30 @@
+.key-features {
+   background-color: #ffffff;
+   /* background-color:var( --tab-bg-color); */
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid #e7f9f9;
+  line-height: 30px;
+  font-size: 14px;
+  margin-top: 25px;
+}
+
+.key-features ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+.key-features .highlight {
+  color: red;
+  font-weight: bold;
+}
+
+.key-features h4 a {
+  color: #05b9bc;
+  text-decoration: none;
+}
+
+
+.mat-expansion-panel{
+  background-color: #e7f9f9;
+}

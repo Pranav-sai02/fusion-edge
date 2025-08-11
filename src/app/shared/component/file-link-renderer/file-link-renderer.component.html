@@ -1,0 +1,59 @@
+<!-- <div class="file-upload-container">
+  <button class="file-button" (click)="triggerFileUpload()">
+    <img src="assets/icons/bx_file.png" height="25" style="cursor: pointer" />
+  </button>
+
+  <input
+    #fileInput
+    type="file"
+    style="display: none"
+    (change)="onFileSelected($event)"
+  />
+
+  <span  *ngIf="fileName"
+  >
+  <span class="file-name">
+    {{ fileName }}
+    </span>
+    <span >
+    <span
+      style="font-size: 12px; margin-left: 5px; cursor: pointer;"
+      (click)="clearFileName()"
+    >
+      &#10060;
+    </span>
+    <i class="fa-solid fa-eye"></i>
+    <i class="fa-solid fa-download"></i>
+  </span>
+  </span>
+</div> -->
+<div class="file-upload-container">
+  <button class="file-button" (click)="triggerFileUpload()">
+    <img src="assets/icons/bx_file.png" height="25" style="cursor: pointer" />
+  </button>
+
+  <input
+    #fileInput
+    type="file"
+    style="display: none"
+    (change)="onFileSelected($event)"
+  />
+
+  <span *ngIf="fileName">
+    <span class="file-name" title="{{ fileName }}">
+      {{ fileName }}
+    </span>
+    <span>
+      <span
+        style="font-size: 11px; margin-left: 5px; cursor: pointer;"
+        (click)="clearFileName()"
+      >
+        &#10060;
+      </span>
+      <i class="fa-solid fa-eye"  (click)="viewFile()" style="margin-left: 8px; cursor: pointer;"></i>
+      <a *ngIf="fileUrl" [href]="fileUrl" [download]="fileName">
+        <i class="fa-solid fa-download" style="margin-left: 15px; cursor: pointer;"></i>
+      </a>
+    </span>
+  </span>
+</div>

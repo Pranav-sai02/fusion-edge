@@ -1,0 +1,117 @@
+<div class="modal-backdrop">
+  <div class="modal-content fullscreen">
+    <!-- <h2 class="modal-title"><i class="fas fa-edit"></i>  Add Service</h2> -->
+    <h2 class="modal-title">
+      <i class="fas" [ngClass]="isEditMode ? 'fas fa-edit' : 'fas fa-edit'"></i>
+      {{ isEditMode ? "Edit Service" : "Create Service" }}
+    </h2>
+    <button class="close-btn" type="button" (click)="onClose()">&times;</button>
+
+    <form
+      [formGroup]="servicesPageForm"
+      (ngSubmit)="onSubmit()"
+      class="form-container"
+    >
+      <!-- Row 1 -->
+      <div class="form-row">
+        <div class="form-field">
+          <label>Description <span class="required">*</span></label>
+          <input formControlName="Description" type="text" />
+          <div
+            class="error-msg"
+            *ngIf="
+              formControl['Description'].touched &&
+              formControl['Description'].invalid
+            "
+          >
+            <small *ngIf="formControl['Description'].errors?.['required']"
+              >Description is required.</small
+            >
+            <small *ngIf="formControl['Description'].errors?.['minlength']"
+              >Minimum 3 characters required.</small
+            >
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label>Service Type <span class="required">*</span></label>
+          <ng-select
+            [items]="serviceTypes"
+            bindLabel="Description"
+            bindValue="ServiceProviderTypeId"
+            formControlName="ServiceType"
+            [searchable]="true"
+            [clearable]="true"
+            [closeOnSelect]="true"
+            [placeholder]="'Select Service Type'"
+            class="service-type custom-select-with-icon"
+          >
+          </ng-select>
+
+          <div
+            class="error-msg"
+            *ngIf="
+              formControl['ServiceType'].touched &&
+              formControl['ServiceType'].invalid
+            "
+          >
+            <small *ngIf="formControl['ServiceType'].errors?.['required']"
+              >Service Type is required.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Note Section -->
+      <label>Note <span class="required">*</span></label>
+      <p-editor
+        formControlName="Note"
+        [style]="{ height: '220px' }"
+        [modules]="editorModules"
+      ></p-editor>
+      <div
+        class="error-msg"
+        *ngIf="formControl['Note'].touched && formControl['Note'].invalid"
+      >
+        <small *ngIf="formControl['Note'].errors?.['required']"
+          >Note is required.</small
+        >
+      </div>
+
+      <!-- Toggle Switch Row -->
+      <div class="form-row toggles-row">
+        <div class="form-group is-active-group">
+          <label class="toggle-label">Is Active?</label>
+          <label class="toggle-switch">
+            <input type="checkbox" formControlName="IsActive" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="form-group is-active-group">
+          <label class="toggle-label">Enforce Cell Number?</label>
+          <label class="toggle-switch">
+            <input type="checkbox" formControlName="EnforceMobileNumber" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="form-group is-active-group">
+          <label class="toggle-label">Send Reference Number</label>
+          <label class="toggle-switch">
+            <input type="checkbox" formControlName="SendRefSMSEnabled" />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="form-actions">
+        <button class="btn cancel-btn" type="button" (click)="onCancel()">
+          Cancel
+        </button>
+        <button class="btn submit-btn" type="submit">Save</button>
+      </div>
+    </form>
+  </div>
+</div>

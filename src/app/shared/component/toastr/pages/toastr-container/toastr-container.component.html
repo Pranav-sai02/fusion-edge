@@ -1,0 +1,7 @@
+<div class="toaster-container">
+  <app-toastr
+    *ngFor="let toast of toastrService.toasts$ | async; trackBy: trackById"
+    [toast]="toast"
+    (close)="dismissToast($event)"
+  ></app-toastr>
+</div>

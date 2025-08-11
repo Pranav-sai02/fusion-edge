@@ -1,0 +1,65 @@
+<!-- Breadcrumb Bar with Buttons -->
+<div class="breadcrumb-bar">
+  <!-- Left side: Page title -->
+  <div class="breadcrumb-left">{{ currentPage }}</div>
+
+  <!-- Right side: Buttons -->
+  <div class="breadcrumb-buttons" *ngIf="showNewButton">
+    <button class="btn btn-secondary" (click)="openPopup()">
+      <span
+        class="bg-white text-secondary rounded-circle d-flex justify-content-center align-items-center"
+      >
+        <i class="fas fa-plus"></i>
+      </span>
+      <span>New</span>
+    </button>
+  </div>
+</div>
+
+<!-- Popups -->
+<app-userpopup
+  *ngIf="showPopup && activePopup === 'users'"
+  (close)="closePopup()"
+></app-userpopup>
+
+<app-service-providers-popup
+  *ngIf="showPopup && activePopup === 'service-providers'"
+  (close)="closePopup()"
+></app-service-providers-popup>
+
+<app-services-page-popup
+  *ngIf="showPopup && activePopup === 'services'"
+  (close)="closePopup()"
+></app-services-page-popup>
+
+<app-client-popup
+  *ngIf="showPopup && activePopup === 'client'"
+  (close)="closePopup()"
+></app-client-popup>
+
+<app-case-popup
+  *ngIf="showPopup && activePopup === 'new'"
+  (close)="closePopup()"
+></app-case-popup>
+
+<app-claims-popup
+  *ngIf="showPopup && activePopup === 'new-claims'"
+  (close)="closePopup()"
+></app-claims-popup>
+
+<app-claim-centre-popup
+  *ngIf="showPopup && activePopup === 'new-claim-centre'"
+  (close)="closePopup()"
+></app-claim-centre-popup>
+
+<app-rating-questions-options-popup
+  *ngIf="showPopup && activePopup === 'new-options'"
+  (close)="closePopup()"
+>
+</app-rating-questions-options-popup>
+
+<app-rating-questions-list-popup
+  *ngIf="showPopup && activePopup === 'new-list'"
+  (close)="closePopup()"
+>
+</app-rating-questions-list-popup>

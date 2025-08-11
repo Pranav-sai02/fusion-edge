@@ -1,0 +1,15 @@
+<div class="ag-theme-alpine" style="height: 500px; width: 100%">
+  <ag-grid-angular
+    class="ag-grid-responsive"
+    [rowData]="call"
+    [pagination]="true"
+    [paginationPageSize]="20"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    rowSelection="single"
+    [animateRows]="true"
+    [domLayout]="'autoHeight'"
+    (gridReady)="onGridReady($event)"
+  >
+  </ag-grid-angular>
+</div>

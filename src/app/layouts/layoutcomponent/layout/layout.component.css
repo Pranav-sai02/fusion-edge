@@ -1,0 +1,24 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f1f1f1;
+  overflow: hidden;
+}
+
+.content-wrapper {
+  flex: 1;
+
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.outlet {
+  padding: 16px;
+}

@@ -1,0 +1,54 @@
+<div class="header">
+  <!-- <button class="link-button">
+      <i class="fas fa-link"></i>Link Rating Question
+    </button> -->
+
+  <form
+    [formGroup]="form"
+    class="dropdown-container"
+    (ngSubmit)="addServiceProviderToGrid()"
+  >
+    <ng-select
+      [items]="serviceProviderList"
+      bindLabel="name"
+      bindValue="id"
+      formControlName="selectedServiceProvider"
+      [searchable]="true"
+      [clearable]="true"
+      [closeOnSelect]="true"
+      placeholder="Link New Service Provider"
+      class="dropdown-container"
+    >
+    </ng-select>
+
+    <button
+      type="submit"
+      class="btn btn-secondary d-flex align-items-center gap-1"
+    >
+      <span
+        class="bg-white text-secondary rounded-circle d-flex justify-content-center align-items-center"
+        style="width: 24px; height: 24px"
+      >
+        <i class="fas fa-plus"></i>
+      </span>
+      <span>Add</span>
+    </button>
+  </form>
+</div>
+<div class="ag-theme-alpine">
+  <ag-grid-angular
+    class="ag-theme-alpine grid-full"
+    [rowData]="linkedProviders"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [components]="{
+      unlinkCellRenderer: UnlinkCellRendererComponent
+    }"
+    [pagination]="true"
+    [paginationPageSize]="20"
+    (gridReady)="onGridReady($event)"
+    [domLayout]="'autoHeight'"
+  >
+  </ag-grid-angular>
+</div>
+\

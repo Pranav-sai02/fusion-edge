@@ -1,0 +1,25 @@
+.file-upload-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.file-button {
+  background-color: white;
+  border: none;
+}
+.file-name{
+   max-width: 150px; /* or whatever fits your layout */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  vertical-align: middle;
+}
+.fa-eye{
+  color: green;
+  margin-left: 10px;
+}
+.fa-download{
+  margin-left: 25px;
+}
