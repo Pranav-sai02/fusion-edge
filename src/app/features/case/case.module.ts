@@ -35,8 +35,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CauseOfDeathComponent } from './case/pages/case-details/tab-components/cause-of-death/cause-of-death.component';
 import { DeceasedInfoComponent } from './case/pages/case-details/tab-components/deceased-info/deceased-info.component';
-import { AdditionalCostComponent } from './case/pages/caller-case-header/additional-costing/aditional-costing/aditional-costing.component';
-import { AddAditionalCostingComponent } from './case/pages/caller-case-header/additional-costing/add-aditional-costing/add-aditional-costing.component';
+import { AddAditionalCostingComponent } from './case/pages/caller-case-header/add-aditional-costing/add-aditional-costing.component';
+import { AdditionalCostingComponent } from './case/pages/caller-case-header/additional-costing/additional-costing.component';
+
 
 
 @NgModule({
@@ -60,8 +61,10 @@ import { AddAditionalCostingComponent } from './case/pages/caller-case-header/ad
     CallerCaseHeaderComponent,
     CauseOfDeathComponent,
     DeceasedInfoComponent,
-    AdditionalCostComponent,
     AddAditionalCostingComponent,
+    AdditionalCostingComponent
+   
+
 
   ],
   imports: [
