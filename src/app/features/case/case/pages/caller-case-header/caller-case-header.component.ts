@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -17,4 +17,12 @@ export class CallerCaseHeaderComponent implements OnInit {
       this.caseRef = params.get('callRef') ?? '';
     });
   }
+
+    showAdditionalCost = false;
+
+  openAdditionalCost() { this.showAdditionalCost = true; }
+  closeAdditionalCost() { this.showAdditionalCost = false; }
+
+  @HostListener('document:keydown.escape')
+  onEsc() { if (this.showAdditionalCost) this.closeAdditionalCost(); }
 }

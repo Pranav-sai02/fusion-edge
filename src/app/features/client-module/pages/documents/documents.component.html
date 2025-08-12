@@ -8,7 +8,7 @@
   <app-link-documents-popup
     *ngIf="showPopup"
     (close)="showPopup = false"
-    (formSubmit)="onServiceLinked($event)">
+    (added)="onDocumentLinked($event)">
   </app-link-documents-popup>
 
   <div class="ag-theme-alpine">
@@ -26,8 +26,7 @@
       (gridReady)="onGridReady($event)"
       (firstDataRendered)="onFitColumns()"
       (gridSizeChanged)="onFitColumns()"
-      [domLayout]="'autoHeight'"
-    >
+      [domLayout]="'autoHeight'">
     </ag-grid-angular>
   </div>
 </div>

@@ -7,9 +7,11 @@ import {
 import { Client } from '../../models/Client';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { ClientService } from '../../services/client-services/client.service';
+
 import { TabStateService } from '../../services/tab-state-service/tab-state.service';
 import { Tab } from '../../models/Tab.enum';
+import { ClientService } from '../../services/client-services/client.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-client-popup',
@@ -18,22 +20,13 @@ import { Tab } from '../../models/Tab.enum';
   styleUrls: ['./client-popup.component.css'],
 })
 export class ClientPopupComponent implements OnInit {
-  // public selectedTab: number = 0;
   showConfirmModal = false;
   showSuccess = false;
+  hasUnsavedChanges = false; // ← use this from child tabs when anything changes
+
   selectedTab: Tab = Tab.Details;
   loadedTabs: boolean[] = [true, false, false, false, false, false, false];
-  Tab = Tab; // Expose the enum to the template
-
-  // tabs = [
-  //   { label: 'Details', type: 'details' },
-  //   { label: 'Services', type: 'services' },
-  //   { label: 'Rating-Questions', type: 'rating-questions' },
-  //   { label: 'Documents', type: 'documents' },
-  //   { label: 'Claim-Centre', type: 'claim-centre' },
-  //   { label: 'Service-Provider', type: 'service-provider' },
-  //   { label: 'Claim-Controller', type: 'claim-controller' },
-  // ];
+  Tab = Tab; // expose enum to template
 
   @Input() clientToEdit!: Client;
   @Input() isEditMode: boolean = false;
@@ -42,158 +35,188 @@ export class ClientPopupComponent implements OnInit {
   constructor(
     private clientService: ClientService,
     private tabState: TabStateService
-  ) {}
-
-  // ngOnInit(): void {
-  //   if (this.isEditMode && this.clientToEdit) {
-  //     // Pre-fill all accordions with existing data
-  //     this.tabState.updateCompanyInfo(this.clientToEdit);
-  //     this.tabState.updateClaimInfo(this.clientToEdit);
-  //     this.tabState.updateClientData(this.clientToEdit);
-  //     this.tabState.updateCustomLabels(this.clientToEdit);
-
-  //   }
-  // }
+  ) { }
 
   ngOnInit(): void {
-    this.tabState.resetAll(); // ⬅️ Add this to clear out old client data
+    // Fresh state each time popup opens
+    this.tabState.resetAll();
 
     if (this.isEditMode && this.clientToEdit) {
-      // Pre-fill all accordions with existing data
+      // Pre-fill simple tabs
       this.tabState.updateCompanyInfo(this.clientToEdit);
       this.tabState.updateClaimInfo(this.clientToEdit);
       this.tabState.updateClientData(this.clientToEdit);
       this.tabState.updateCustomLabels(this.clientToEdit);
 
-      // Behavioral Tabs (🔥 THIS IS WHAT YOU MISSED)
+      // Behavioral tabs
       this.tabState.updateServices(this.clientToEdit.ClientService || []);
-      this.tabState.updateRatingQuestions(
-        this.clientToEdit.ClientRatingQuestion || []
+      this.tabState.updateRatingQuestions(this.clientToEdit.ClientRatingQuestion || []);
+      this.tabState.updateDocuments(
+        this.clientToEdit.clientDocument || this.clientToEdit.clientDocument || []
       );
-      this.tabState.updateDocuments(this.clientToEdit.clientDocument || []);
-      this.tabState.updateClaimCentre(
-        this.clientToEdit.ClientClaimCentre || []
-      );
-      this.tabState.updateServiceProvider(
-        this.clientToEdit.ClientServiceProvider || []
-      );
-      this.tabState.updateClaimController(
-        this.clientToEdit.ClientClaimController || []
-      );
+      this.tabState.updateClaimCentre(this.clientToEdit.ClientClaimCentre || []);
+      this.tabState.updateServiceProvider(this.clientToEdit.ClientServiceProvider || []);
+      this.tabState.updateClaimController(this.clientToEdit.ClientClaimController || []);
     }
   }
-
-  // selectTab(index: number): void {
-  //   this.selectedTab = index;
-  // }
 
   selectTab(tab: Tab): void {
     this.selectedTab = tab;
     this.loadedTabs[tab] = true;
   }
 
-  /** Prepare payload with safe defaults */
+  /** Build API payload with safe defaults */
   private preparePayload(fullClient: Client): any {
     return {
-      ClientId: fullClient.ClientId || 0,
-      ClientGroupId: fullClient.ClientGroupId || 1,
+      ClientId: fullClient.ClientId ?? 0,
+      ClientGroupId: fullClient.ClientGroupId ?? 1,
       ClientName: fullClient.ClientName?.trim() || 'Unnamed Client',
-      DoTextExport: fullClient.DoTextExport ?? false,
+
+      DoTextExport: !!fullClient.DoTextExport,
       IsActive: fullClient.IsActive ?? true,
-      NearestClaimCentre: fullClient.NearestClaimCentre ?? false,
-      PolicyLookup: fullClient.PolicyLookup ?? false,
-      ProcessClaims: fullClient.ProcessClaims ?? false,
-      UseMembershipNumber: fullClient.UseMembershipNumber ?? false,
-      Validate: fullClient.Validate ?? false,
-      ValidationExternalFile: fullClient.ValidationExternalFile ?? false,
-      ValidationOther: fullClient.ValidationOther ?? false,
-      ValidationWeb: fullClient.ValidationWeb ?? false,
-      WebValidationAVS: fullClient.WebValidationAVS ?? false,
-      WebValidationOTH: fullClient.WebValidationOTH ?? false,
-      EnableVoucherExportOnDeathClaim:
-        fullClient.EnableVoucherExportOnDeathClaim ?? false,
+      NearestClaimCentre: !!fullClient.NearestClaimCentre,
+      PolicyLookup: !!fullClient.PolicyLookup,
+      ProcessClaims: !!fullClient.ProcessClaims,
+      UseMembershipNumber: !!fullClient.UseMembershipNumber,
+      Validate: !!fullClient.Validate,
+      ValidationExternalFile: !!fullClient.ValidationExternalFile,
+      ValidationOther: !!fullClient.ValidationOther,
+      ValidationWeb: !!fullClient.ValidationWeb,
+      WebValidationAVS: !!fullClient.WebValidationAVS,
+      WebValidationOTH: !!fullClient.WebValidationOTH,
+      EnableVoucherExportOnDeathClaim: !!fullClient.EnableVoucherExportOnDeathClaim,
 
       ClaimsManager: fullClient.ClaimsManager || '',
       Address: fullClient.Address || '',
-      ClaimFormDeclaration: fullClient.ClaimFormDeclaration || null,
-      ClaimFormDeclarationPlain: fullClient.ClaimFormDeclarationPlain || null,
+      ClaimFormDeclaration: fullClient.ClaimFormDeclaration || '',           // string, not null
+      ClaimFormDeclarationPlain: fullClient.ClaimFormDeclarationPlain || '', // string, not null
       Code: fullClient.Code || '',
       CompanyLogo: fullClient.CompanyLogo || '',
-      CompanyLogoData: fullClient.CompanyLogoData || null,
+      CompanyLogoData: fullClient.CompanyLogoData ?? null,
       Fax: fullClient.Fax || '',
       Mobile: fullClient.Mobile || '',
       OtherValidationNotes: fullClient.OtherValidationNotes || '',
       PolicyFile: fullClient.PolicyFile || '',
       PolicyLabel: fullClient.PolicyLabel || '',
-      PolicyLookupFileData: fullClient.PolicyLookupFileData || null,
+      PolicyLookupFileData: fullClient.PolicyLookupFileData ?? null,
       PolicyLookupFileName: fullClient.PolicyLookupFileName || '',
       PolicyLookupPath: fullClient.PolicyLookupPath || '',
       PrintName: fullClient.PrintName || fullClient.ClientName || '',
       Tel: fullClient.Tel || '',
 
-      ValidationLabel1: fullClient.ValidationLabel1 || null,
-      ValidationLabel2: fullClient.ValidationLabel2 || null,
-      ValidationLabel3: fullClient.ValidationLabel3 || null,
-      ValidationLabel4: fullClient.ValidationLabel4 || null,
-      ValidationLabel5: fullClient.ValidationLabel5 || null,
-      ValidationLabel6: fullClient.ValidationLabel6 || null,
+      ValidationLabel1: fullClient.ValidationLabel1 ?? null,
+      ValidationLabel2: fullClient.ValidationLabel2 ?? null,
+      ValidationLabel3: fullClient.ValidationLabel3 ?? null,
+      ValidationLabel4: fullClient.ValidationLabel4 ?? null,
+      ValidationLabel5: fullClient.ValidationLabel5 ?? null,
+      ValidationLabel6: fullClient.ValidationLabel6 ?? null,
 
       WebURL: fullClient.WebURL || '',
       WebValidationURL: fullClient.WebValidationURL || '',
 
+      // Make sure these names match your API model exactly
       ClientServiceProvider: fullClient.ClientServiceProvider || [],
       ClientService: fullClient.ClientService || [],
       ClientRatingQuestion: fullClient.ClientRatingQuestion || [],
-      clientDocument: fullClient.clientDocument || [],
+      ClientDocument: fullClient.clientDocument ?? (fullClient as any).clientDocument ?? [],
       ClientClaimController: fullClient.ClientClaimController || [],
       ClientClaimCentre: (fullClient.ClientClaimCentre || []).map((c) => ({
-        ClientClaimCentreId: c.ClientClaimCentreId || 0,
-        ClientId: fullClient.ClientId || 0,
+        ClientClaimCentreId: c.ClientClaimCentreId ?? 0,
+        ClientId: fullClient.ClientId ?? 0,
         ClaimCentreId: c.ClaimCentreId,
       })),
     };
   }
 
   save(): void {
-    this.tabState.gatherFullClient().subscribe((fullClient: Client) => {
-      console.log('Merged client data to save:', fullClient);
+    this.tabState
+      .gatherFullClient()
+      .pipe(take(1))
+      .subscribe((fullClient: Client) => {
+        // 🔎 see the claim slice right before we build payload
+        console.log('[popup] claim snapshot:', this.tabState.claimInfoSnapshot);
 
-      const payload = this.preparePayload(fullClient);
-      console.log('Final payload:', payload);
+        // ✅ failsafe: force claim fields from the live slice
+        const snap = this.tabState.claimInfoSnapshot || {};
+        fullClient.ClaimFormDeclaration =
+          snap.ClaimFormDeclaration ?? fullClient.ClaimFormDeclaration ?? '';
+        fullClient.ClaimFormDeclarationPlain =
+          snap.ClaimFormDeclarationPlain ?? fullClient.ClaimFormDeclarationPlain ?? '';
 
-      const request$ = this.isEditMode
-        ? this.clientService.updateClient(payload.ClientId, payload)
-        : this.clientService.createClient(payload);
+        console.log('[popup] fullClient lenses:', {
+          html: (fullClient.ClaimFormDeclaration || '').length,
+          plain: (fullClient.ClaimFormDeclarationPlain || '').length,
+        });
 
-      request$.subscribe({
-        next: () => {
-          this.showSuccess = true;
-          setTimeout(() => {
-            this.showSuccess = false;
-            this.confirmClose();
-          }, 2000);
-        },
-        error: (err) => {
-          console.error('Failed to save client:', err);
-          if (err?.error?.errors) {
-            const messages = Object.values(err.error.errors).flat().join('\n');
-            alert(`Validation failed:\n${messages}`);
-          } else {
-            alert('Failed to save client.');
-          }
-        },
+        const payload = this.preparePayload(this.sanitizeClient(fullClient));
+        console.log('[popup] Final payload lenses:', {
+          html: (payload.ClaimFormDeclaration || '').length,
+          plain: (payload.ClaimFormDeclarationPlain || '').length,
+        });
+
+        const request$ = this.isEditMode
+          ? this.clientService.updateClient(payload.ClientId, payload)
+          : this.clientService.createClient(payload);
+
+        request$.subscribe({
+          next: () => {
+            this.hasUnsavedChanges = false;
+            this.showSuccess = true;
+            setTimeout(() => { this.showSuccess = false; this.confirmClose(); }, 800);
+          },
+          error: (err) => {
+            console.error('Failed to save client:', err);
+            if (err?.error?.errors) {
+              const messages = Object.values(err.error.errors).flat().join('\n');
+              alert(`Validation failed:\n${messages}`);
+            } else {
+              alert('Failed to save client.');
+            }
+          },
+        });
       });
-    });
   }
 
-  printPage() {
+  /** Remove UI-only DTOs before POST (keeps payload clean) */
+  private sanitizeClient(c: Client): Client {
+    // pull both casings, then write back as `ClientDocument`
+    const docsIn = (c as any).ClientDocument ?? (c as any).clientDocument ?? [];
+    const docs = (docsIn || []).map((d: any) => {
+      const { DocumentDto, Document, FileData, ...rest } = d || {};
+      return rest;
+    });
+
+    const svc = (c.ClientService || []).map((s: any) => {
+      const { ServiceDto, ...rest } = s || {};
+      return rest;
+    });
+
+    const prov = (c.ClientServiceProvider || []).map((sp: any) => {
+      const { ProviderDto, ClientServiceProviderDto, ...rest } = sp || {};
+      return rest;
+    });
+
+    // drop both casings and reassign the canonical key
+    const { ClientDocument, clientDocument, ...rest } = c as any;
+
+    return {
+      ...rest,
+      ClientService: svc,
+      ClientDocument: docs,           // <- canonical
+      ClientServiceProvider: prov,
+    } as Client;
+  }
+
+  printPage(): void {
     throw new Error('Method not implemented.');
   }
 
-  confirmClose() {
+  /** Manual close: show confirm (you can render different text if hasUnsavedChanges) */
+  confirmClose(): void {
     this.showConfirmModal = true;
   }
-  confirmYes() {
+
+  confirmYes(): void {
     this.showConfirmModal = false;
     this.close.emit();
   }
