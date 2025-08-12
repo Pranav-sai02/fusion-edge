@@ -38,7 +38,7 @@
 
 
 .btn-row { display:flex; gap:8px; flex-wrap:wrap; }
-.status { color:#06a77d; font-weight:600; }
+/* .status { color:#06a77d; font-weight:600; } */
 
 /* modal */
 .modal-backdrop{
@@ -61,7 +61,7 @@
 .caller-container{background:#fff;border-radius:10px;padding:16px}
 .call-ref{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border:1px solid #f0f0f0;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 .call-ref p{margin:0}
-.status{color:#06a77d;font-weight:600}
+/* .status{color:#06a77d;font-weight:600} */
 .btn-row{display:flex;gap:8px;flex-wrap:wrap}
 .btn{background:#05b9bc;color:#fff;border:0;border-radius:8px;padding:8px 12px;font-weight:500;cursor:pointer}
 .btn:hover{filter:brightness(.95)}

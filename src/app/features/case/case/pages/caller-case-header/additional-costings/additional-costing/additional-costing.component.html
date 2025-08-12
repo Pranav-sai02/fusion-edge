@@ -1,0 +1,35 @@
+<section class="wrap">
+  <header class="grid-title">
+    <div class="toolbar">
+      <button class="btn primary" (click)="openAddModal()">+ New Additional Cost</button>
+
+      <button class="print-btn" (click)="printPage()">
+        <div class="tooltip-container1">
+          <i class="fa fa-print"></i>
+          <span class="custom-tooltip1"> Print</span>
+        </div>
+      </button>
+    </div>
+  </header>
+
+  <!-- Grid owns the scroll; not autoHeight -->
+  <div class="ag-theme-alpine custom-teal grid-box">
+    <ag-grid-angular
+      class="ag-grid-responsive"
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      [pagination]="true"
+      [paginationPageSize]="20"
+      [domLayout]="'autoHeight'"
+      (gridReady)="onGridReady($event)">
+    </ag-grid-angular>
+  </div>
+</section>
+
+<!-- Child modal component -->
+<app-add-aditional-costing
+  [visible]="showAddModal"
+  (save)="onAdd($event)"
+  (cancel)="closeAddModal()">
+</app-add-aditional-costing>
