@@ -1,0 +1,85 @@
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:2000}
+.modal-card{
+  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:min(720px,calc(100vw - 32px));max-height:85vh;background:#fff;color:#111;border-radius:14px;overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);display:flex;flex-direction:column
+}
+
+/* Narrower size just for the Add Additional Cost modal */
+.modal-card.add-cost{width:min(640px,92vw);max-height:fit-content}
+
+/* header/body/footer unchanged */
+.modal-header{display:flex;align-items:center;background:#00b3b3;color:#fff;padding:12px 16px}
+.modal-header h3{margin:0;font:600 16px/1.2 inherit}
+.icon-btn{background:transparent;border:0;color:#fff;font-size:18px;cursor:pointer;margin-left:auto}
+.modal-body{padding:16px}
+.modal-body.service-padding{padding:30px}
+.modal-footer{display:flex;justify-content:flex-end;gap:8px;padding-top:8px;border-top:1px solid #eef2f6}
+
+/* form layout */
+.form-grid{display:grid;grid-template-columns:120px 1fr;gap:12px 16px;align-items:center;margin-bottom:8px}
+.form-grid label{font-weight:600;color:#111}
+.form-grid input{height:36px;padding:6px 10px;border:1px solid #e2e8f0;border-radius:8px;outline:none}
+.form-grid input:focus{border-color:#00b3b3;box-shadow:0 0 0 3px rgba(0,179,179,.15)}
+.errors{display:grid;gap:4px;margin:4px 0 8px}
+.errors small{color:#b42318}
+
+/* ---------- Responsive ---------- */
+/* ≥1440px (keep compact width so it doesn’t feel too wide) */
+@media (min-width:1440px){
+  .modal-card.add-cost{width:640px}
+}
+
+/* 1024–1439px */
+@media (max-width:1439px) and (min-width:1024px){
+  .modal-card.add-cost{width:min(600px,90vw)}
+}
+
+/* 600–1023px */
+@media (max-width:1023px) and (min-width:600px){
+  .modal-card.add-cost{width:min(560px,92vw)}
+}
+
+/* ≤599px */
+@media (max-width:599px){
+  .modal-card.add-cost{width:calc(100vw - 24px)}
+  .form-grid{grid-template-columns:1fr}
+  .form-grid label{margin-top:6px}
+}  
+
+/* Buttons (same look as elsewhere) */
+.btn{
+  height:36px;
+  padding:0 12px;
+  border-radius:10px;
+  border:1px solid #e2e8f0;
+  background:#fff;
+  cursor:pointer;
+  font-weight:500;
+}
+.btn.primary{
+  background:#00b3b3;
+  color:#fff;
+  border-color:#00b3b3;
+}
+.btn.primary:hover{ filter:brightness(.95); }
+.btn:disabled,
+.btn[disabled]{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+/* optional: spacing between Cancel and Add */
+.modal-footer .btn + .btn{ margin-left:8px; }
+
+
+/* existing .btn + .btn.primary stay as-is */
+
+/* red cancel button */
+.btn.danger{
+  background:#e74c3c;
+  color:#fff;
+  border:1px solid #e74c3c;
+}
+.btn.danger:hover{ filter: brightness(.95); }
+.btn.danger:focus-visible{ outline:2px solid #e74c3c; outline-offset:2px; }
