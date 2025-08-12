@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TabStateService } from '../../../services/tab-state-service/tab-state.service';
+import { Client } from '../../../models/Client';
 
 @Component({
   selector: 'app-client-data',
@@ -34,7 +35,7 @@ export class ClientDataComponent {
 
   ngOnInit(): void {
     // Restore previous state from TabStateService
-    this.tabState.getClientData().subscribe((data) => {
+    this.tabState.clientData$.subscribe((data: Partial<Client>) => {
       if (data) {
         this.useMembershipNumber = data.UseMembershipNumber ?? false;
         this.usePolicyLookup = data.PolicyLookup ?? false;

@@ -46,7 +46,6 @@ import { LinkDocumentsPopupComponent } from './link-documents-popup/link-documen
     ClientTabComponent,
 
     ClientServicesComponent,
-    LinkServicePopupComponent,
     DocumentsComponent,
     ClaimCentreComponent,
     ServiceProviderComponent,
