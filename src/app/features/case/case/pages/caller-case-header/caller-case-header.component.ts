@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-type ModalId  = 'contactHistory' | 'additionalCost' | 'abort' | 'exit' | 'sms' | 'email' | 'phaseCosting' | 'callRating' | null;
+type ModalId  = 'contactHistory' | 'additionalCost' | 'abort' | 'exit' | 'sms' | 'email' | 'phaseCosting' | 'caseRating' | null;
 type ModalKey = Exclude<ModalId, null>;
 
 interface Mounted {
@@ -12,7 +12,7 @@ interface Mounted {
   sms: boolean;
   email: boolean;
   phaseCosting: boolean;
-  callRating: boolean;
+  caseRating: boolean;
 }
 
 @Component({
@@ -43,7 +43,7 @@ export class CallerCaseHeaderComponent implements OnInit {
     sms: 'SMS',
     email: 'Send Email',
     phaseCosting: 'Phase Costing',
-    callRating: 'Call Rating',
+    caseRating: 'Case Rating',
   };
 
   mounted: Mounted = {
@@ -54,7 +54,7 @@ export class CallerCaseHeaderComponent implements OnInit {
     sms: false,
     email: false,
     phaseCosting: false,
-    callRating: false,
+    caseRating: false,
   };
 
   openModal(id: ModalKey) {

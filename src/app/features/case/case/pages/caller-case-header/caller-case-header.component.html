@@ -9,7 +9,7 @@
       <button (click)="openModal('contactHistory')">Contact History</button>
       <button (click)="openModal('additionalCost')">Additional Cost</button>
       <button (click)="openModal('abort')">Abort</button>
-      <button (click)="openModal('callRating')">call rating</button>
+      <button (click)="openModal('caseRating')">Case rating</button>
       <button (click)="openModal('phaseCosting')">phase costing</button>
       <button (click)="openModal('exit')">Exit</button>
       <button (click)="openModal('sms')">SMS</button>
@@ -35,7 +35,7 @@
         <app-additional-costing></app-additional-costing>
       </div>
 
-      <div *ngIf="mounted.callRating" [hidden]="activeModal !== 'callRating'">
+      <div *ngIf="mounted.caseRating" [hidden]="activeModal !== 'caseRating'">
         <app-call-rating-ss2></app-call-rating-ss2>
       </div>
 

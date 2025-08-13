@@ -45,39 +45,20 @@
   </div>
 
   <!-- Questions -->
-  <div class="section">
-    <div class="section-title">Rating Questions</div>
+<div class="section">
+  <div class="section-title">Rating Questions</div>
 
-    <div class="questions">
-      <div class="q-row" *ngFor="let q of questions; trackBy: trackById">
-        <div class="q-text">{{ q.text }}</div>
-
-        <div class="q-answers" *ngIf="q.type === 'scale'">
-          <label class="chip">
-            <input type="radio" [name]="'q'+q.id" value="BAD"  [(ngModel)]="answers[q.id]" /> BAD
-          </label>
-          <label class="chip">
-            <input type="radio" [name]="'q'+q.id" value="FAIR" [(ngModel)]="answers[q.id]" /> FAIR
-          </label>
-          <label class="chip">
-            <input type="radio" [name]="'q'+q.id" value="GOOD" [(ngModel)]="answers[q.id]" /> GOOD
-          </label>
-          <i class="flag" title="Mark for follow-up">⚑</i>
-        </div>
-
-        <div class="q-answers" *ngIf="q.type === 'yesno'">
-          <label class="chip">
-            <input type="radio" [name]="'q'+q.id" value="NO"  [(ngModel)]="answers[q.id]" /> NO
-          </label>
-          <label class="chip">
-            <input type="radio" [name]="'q'+q.id" value="YES" [(ngModel)]="answers[q.id]" /> YES
-          </label>
-          <i class="flag" title="Mark for follow-up">⚑</i>
-        </div>
-      </div>
-    </div>
+  <div class="ag-theme-alpine ss2-grid">
+    <ag-grid-angular
+      class="ag-grid"
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      [domLayout]="'autoHeight'"
+      (gridReady)="onGridReady($event)">
+    </ag-grid-angular>
   </div>
-
+</div>
   <!-- Footer -->
   <div class="cr-footer">
     <div class="hint success">★ Rating completed. Call to be closed</div>
