@@ -1,0 +1,89 @@
+<!-- call-rating-ss2.component.html -->
+<div class="cr">
+  <!-- Meta -->
+  <div class="meta-strip">
+    <div class="left">
+      <span class="muted">Call Ref. Number:</span>
+      <strong>{{ caseRef || 'REF123' }}</strong>
+      <span class="badge">Active</span>
+    </div>
+    <div class="right">
+      <span class="muted">Case Number:</span>
+      <strong>{{ caseNumber || 'N/A' }}</strong>
+    </div>
+  </div>
+
+  <!-- Contact info -->
+  <div class="section">
+    <div class="section-title">Contact Info</div>
+
+    <div class="form-grid" [formGroup]="form">
+      <label class="field">
+        <span>Contact Name</span>
+        <input type="text" formControlName="contactName" placeholder="Enter contact name" />
+      </label>
+
+      <!-- Phone control spans 2 columns to replace Area Code + Tel -->
+      <label class="field span-2">
+        <span>Telephone</span>
+        <ngx-intl-tel-input
+          [cssClass]="'ss2-intl-input'"
+          [preferredCountries]="preferred"
+          [enablePlaceholder]="true"
+          [searchCountryFlag]="true"
+          [separateDialCode]="true"
+          [searchCountryField]="searchFields"
+          [selectFirstCountry]="false"
+          [selectedCountryISO]="selectedISO"
+          [maxLength]="10"
+          [phoneValidation]="true"
+          name="phone"
+          formControlName="phone">
+        </ngx-intl-tel-input>
+      </label>
+    </div>
+  </div>
+
+  <!-- Questions -->
+  <div class="section">
+    <div class="section-title">Rating Questions</div>
+
+    <div class="questions">
+      <div class="q-row" *ngFor="let q of questions; trackBy: trackById">
+        <div class="q-text">{{ q.text }}</div>
+
+        <div class="q-answers" *ngIf="q.type === 'scale'">
+          <label class="chip">
+            <input type="radio" [name]="'q'+q.id" value="BAD"  [(ngModel)]="answers[q.id]" /> BAD
+          </label>
+          <label class="chip">
+            <input type="radio" [name]="'q'+q.id" value="FAIR" [(ngModel)]="answers[q.id]" /> FAIR
+          </label>
+          <label class="chip">
+            <input type="radio" [name]="'q'+q.id" value="GOOD" [(ngModel)]="answers[q.id]" /> GOOD
+          </label>
+          <i class="flag" title="Mark for follow-up">⚑</i>
+        </div>
+
+        <div class="q-answers" *ngIf="q.type === 'yesno'">
+          <label class="chip">
+            <input type="radio" [name]="'q'+q.id" value="NO"  [(ngModel)]="answers[q.id]" /> NO
+          </label>
+          <label class="chip">
+            <input type="radio" [name]="'q'+q.id" value="YES" [(ngModel)]="answers[q.id]" /> YES
+          </label>
+          <i class="flag" title="Mark for follow-up">⚑</i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="cr-footer">
+    <div class="hint success">★ Rating completed. Call to be closed</div>
+    <div class="actions">
+      <button class="btn danger" (click)="cancel.emit()">Cancel</button>
+      <button class="btn primary" [disabled]="!valid" (click)="onSave()">Update</button>
+    </div>
+  </div>
+</div>

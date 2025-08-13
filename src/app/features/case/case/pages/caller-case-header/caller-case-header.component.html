@@ -6,30 +6,58 @@
     </p>
 
     <div class="btn-row">
-      <button>Contact History</button>
-
-      <!-- wire up the click -->
-      <button (click)="openAdditionalCost()">Additional Cost</button>
-
-      <button>Abort</button>
-      <button>Exit</button>
-      <button>SMS</button>
-      <button>Send Email</button>
+      <button (click)="openModal('contactHistory')">Contact History</button>
+      <button (click)="openModal('additionalCost')">Additional Cost</button>
+      <button (click)="openModal('abort')">Abort</button>
+      <button (click)="openModal('callRating')">call rating</button>
+      <button (click)="openModal('phaseCosting')">phase costing</button>
+      <button (click)="openModal('exit')">Exit</button>
+      <button (click)="openModal('sms')">SMS</button>
+      <button (click)="openModal('email')">Send Email</button>
     </div>
   </div>
 </div>
 
-<!-- Lightweight modal (local, no shared module) -->
-<div class="modal-backdrop" *ngIf="showAdditionalCost" (click)="closeAdditionalCost()">
-  <div class="modal-card" (click)="$event.stopPropagation()">
+<!-- One lightweight modal reused for all actions -->
+<div class="modal-backdrop" *ngIf="activeModal" (click)="closeModal()">
+  <div class="modal-card" role="dialog" aria-modal="true" (click)="$event.stopPropagation()">
     <header class="modal-header">
-      <h3>Additional Cost</h3>
-      <button type="button" class="icon-btn" (click)="closeAdditionalCost()">✕</button>
+      <h3>{{ activeModal ? modalTitleMap[activeModal] : '' }}</h3>
+      <button type="button" class="icon-btn" (click)="closeModal()" aria-label="Close">✕</button>
     </header>
 
     <section class="modal-body">
-      <!-- your existing component rendered inside -->
-      <app-additional-costing></app-additional-costing>
+      <div *ngIf="mounted.contactHistory" [hidden]="activeModal !== 'contactHistory'">
+        <app-contact-history [caseRef]="caseRef"></app-contact-history>
+      </div>
+
+      <div *ngIf="mounted.additionalCost" [hidden]="activeModal !== 'additionalCost'">
+        <app-additional-costing></app-additional-costing>
+      </div>
+
+      <div *ngIf="mounted.callRating" [hidden]="activeModal !== 'callRating'">
+        <app-call-rating-ss2></app-call-rating-ss2>
+      </div>
+
+      <div *ngIf="mounted.phaseCosting" [hidden]="activeModal !== 'phaseCosting'">
+        <app-phase-costing></app-phase-costing>
+      </div>
+
+      <div *ngIf="mounted.abort" [hidden]="activeModal !== 'abort'">
+        <app-abort></app-abort>
+      </div>
+
+      <div *ngIf="mounted.exit" [hidden]="activeModal !== 'exit'">
+        <app-exit></app-exit>
+      </div>
+
+      <div *ngIf="mounted.sms" [hidden]="activeModal !== 'sms'">
+        <app-sms [caseRef]="caseRef"></app-sms>
+      </div>
+
+      <div *ngIf="mounted.email" [hidden]="activeModal !== 'email'">
+        <app-email [caseRef]="caseRef"></app-email>
+      </div>
     </section>
   </div>
 </div>

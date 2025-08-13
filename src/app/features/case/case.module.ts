@@ -35,8 +35,15 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CauseOfDeathComponent } from './case/pages/case-details/tab-components/cause-of-death/cause-of-death.component';
 import { DeceasedInfoComponent } from './case/pages/case-details/tab-components/deceased-info/deceased-info.component';
-import { AddAditionalCostingComponent } from './case/pages/caller-case-header/add-aditional-costing/add-aditional-costing.component';
-import { AdditionalCostingComponent } from './case/pages/caller-case-header/additional-costing/additional-costing.component';
+import { AddAditionalCostingComponent } from './case/pages/caller-case-header/additional-costings/add-aditional-costing/add-aditional-costing.component';
+import { AdditionalCostingComponent } from './case/pages/caller-case-header/additional-costings/additional-costing/additional-costing.component';
+import { ContactHistoryComponent } from './case/pages/contact-history/contact-history.component';
+import { AbortComponent } from './case/pages/abort/abort.component';
+import { ExitComponent } from './case/pages/exit/exit.component';
+import { SmsComponent } from './case/pages/sms/sms.component';
+import { EmailComponent } from './case/pages/email/email.component';
+import { PhaseCostingComponent } from './case/pages/phase-costing/phase-costing.component';
+import { CallRatingSs2Component } from './case/pages/call-rating-ss2/call-rating-ss2.component';
 
 
 
@@ -62,7 +69,14 @@ import { AdditionalCostingComponent } from './case/pages/caller-case-header/addi
     CauseOfDeathComponent,
     DeceasedInfoComponent,
     AddAditionalCostingComponent,
-    AdditionalCostingComponent
+    AdditionalCostingComponent,
+    ContactHistoryComponent,
+    AbortComponent,
+    ExitComponent,
+    SmsComponent,
+    EmailComponent,
+    PhaseCostingComponent,
+    CallRatingSs2Component
    
 
 

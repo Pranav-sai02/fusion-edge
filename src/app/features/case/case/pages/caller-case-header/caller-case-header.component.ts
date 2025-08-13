@@ -1,28 +1,73 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+type ModalId  = 'contactHistory' | 'additionalCost' | 'abort' | 'exit' | 'sms' | 'email' | 'phaseCosting' | 'callRating' | null;
+type ModalKey = Exclude<ModalId, null>;
+
+interface Mounted {
+  contactHistory: boolean;
+  additionalCost: boolean;
+  abort: boolean;
+  exit: boolean;
+  sms: boolean;
+  email: boolean;
+  phaseCosting: boolean;
+  callRating: boolean;
+}
+
 @Component({
   selector: 'app-caller-case-header',
   standalone: false,
   templateUrl: './caller-case-header.component.html',
-  styleUrl: './caller-case-header.component.css',
+  styleUrls: ['./caller-case-header.component.css'], // ✅ plural
 })
 export class CallerCaseHeaderComponent implements OnInit {
-  caseRef!: string;
+  caseRef = '';
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.queryParamMap.subscribe((params) => {
+    this.route.queryParamMap.subscribe(params => {
       this.caseRef = params.get('callRef') ?? '';
     });
   }
 
-    showAdditionalCost = false;
+  /** Modal state */
+  activeModal: ModalId = null;
 
-  openAdditionalCost() { this.showAdditionalCost = true; }
-  closeAdditionalCost() { this.showAdditionalCost = false; }
+  modalTitleMap: Record<ModalKey, string> = {
+    contactHistory: 'Contact History',
+    additionalCost: 'Additional Cost',
+    abort: 'Abort',
+    exit: 'Exit',
+    sms: 'SMS',
+    email: 'Send Email',
+    phaseCosting: 'Phase Costing',
+    callRating: 'Call Rating',
+  };
+
+  mounted: Mounted = {
+    contactHistory: false,
+    additionalCost: false,
+    abort: false,
+    exit: false,
+    sms: false,
+    email: false,
+    phaseCosting: false,
+    callRating: false,
+  };
+
+  openModal(id: ModalKey) {
+    this.activeModal = id;
+    if (!this.mounted[id]) this.mounted[id] = true; // mount once, keep alive
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeModal() {
+    this.activeModal = null;
+    document.body.style.overflow = '';
+  }
 
   @HostListener('document:keydown.escape')
-  onEsc() { if (this.showAdditionalCost) this.closeAdditionalCost(); }
+  onEsc() { if (this.activeModal) this.closeModal(); }
 }
